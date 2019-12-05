@@ -2,7 +2,7 @@
 
 // use $router variable for create routes.
 
-$router->get('/' , 'HomeController@index');
+$router->any('/' , 'HomeController@index');
 
 $router->get('/help' , function(){
     return 'here is help';

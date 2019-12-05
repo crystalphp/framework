@@ -1,0 +1,7 @@
+<?php
+define('APP_PATH', __DIR__);
+function libs($path){
+	return APP_PATH . '/_crystal' . $path;
+}
+include_once '_crystal/Console/handle.php';
+

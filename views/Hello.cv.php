@@ -1,3 +1,3 @@
-this is a Hello View!!!!
+Hello <?= $data['name'] ?>!
 <br />
-Your name is <?= $data['name'] ?>
+you are <?= $data['age'] ?> Years Old
