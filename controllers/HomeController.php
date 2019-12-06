@@ -13,4 +13,18 @@ class HomeController extends Controller{
     	}
     	return view('GetName');
     }
+
+
+    public function peoples(Request $r){
+        $peoples = [
+            'parsa',
+            'amir',
+            'nasim',
+            'ali',
+            'maryam',
+            'farhad',
+            'goli',
+        ];
+        return view('list' , ['peoples' => $peoples]);
+    }
 }

@@ -28,5 +28,9 @@ function view($name, $data = null){
     return app::view($name , $data);
 }
 
+function vu($name , $data=null){
+    view($name , $data);
+}
+
 
 

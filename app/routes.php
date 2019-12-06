@@ -11,3 +11,5 @@ $router->get('/help' , function(){
 $router->any('/any' , function (){
     return 'this is a any';
 });
+
+$router->any('/peoples' , 'HomeController@peoples');
