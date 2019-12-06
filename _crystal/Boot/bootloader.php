@@ -11,6 +11,13 @@ include_once libs('/Boot/formsBoot.php');
 
 
 $router = new Router;
+
+if(app::get_config('app_status')['type'] == 'debug'){
+	include_once libs('/Console/cmd/mix-resources.php');
+	cmd_run([]);
+}
+
+
 include_once app_path('/app/routes.php');
 
 

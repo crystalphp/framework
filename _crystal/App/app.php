@@ -10,9 +10,12 @@ class app{
         echo $controller_obj->$func_name(new Request);
     }
 
-    public static function get_config()
+    public static function get_config($key=null)
     {
         $configs = require app_path('/app/config.php');
+        if($key !== null){
+            return $configs[$key];
+        }
         return $configs;
     }
 

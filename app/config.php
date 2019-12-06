@@ -8,4 +8,9 @@ return [
         ],
     ],
 
+    'app_status' => [
+    	'state' => 'up',
+    	'type' => 'debug',
+    ],
+
 ];

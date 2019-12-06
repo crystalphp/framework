@@ -1,11 +1,11 @@
 <?php
 
 
-function app_path($path){
+function app_path($path=''){
     return APP_PATH . $path;
 }
 
-function libs($path){
+function libs($path=''){
     return app_path('/_crystal' . $path);
 }
 
