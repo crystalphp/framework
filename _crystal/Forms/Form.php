@@ -28,19 +28,34 @@ class Form{
 		echo $render_html;
 	}
 	
-	public static function isValid(Request $r , $method='post'){
+	public static function isValid(Request $r , $method='post' , $run_onsubmit=true){
 		$form = static::make(new Formprint);
 		$m = $method;
 		$result = true;
 		$error = null;
         foreach($form->fields as $f){
 			if($r->$m($f->name) != null){
-			    if($f->max != null) {
-                    if (strlen($r->$m($f->name)) > $f->max) {
-                        $result = false;
-                        $error = $f->max_error;
+				if($f->type == 'number'){
+					if( ! is_numeric($r->$m($f->name))){
+						$result = false;
+                        $error = $f->numeric_error;
                         break;
-                    }
+					}
+				}
+			    if($f->max != null) {
+			    	if($f->type == 'number'){
+			    		if ($r->$m($f->name) > $f->max) {
+                        	$result = false;
+                        	$error = $f->max_error;
+                        	break;
+                    	}
+			    	}else{
+                    	if (strlen($r->$m($f->name)) > $f->max) {
+                        	$result = false;
+                        	$error = $f->max_error;
+                        	break;
+                    	}
+                	}
                 }
 				if($f->most_equals != null){
 				    $val = '';
@@ -66,6 +81,12 @@ class Form{
 
         static::$error_message = $error;
 
+        if($result){
+        	if($run_onsubmit){
+        		static::onsubmit($r);
+        	}
+        }
+
 		return $result;
 	}
 
@@ -89,6 +110,16 @@ class Form{
 
         return $result;
 	}
+
+    public static function submited_and_is_valid(Request $r , $method="post" , $call_onsubmit=true){
+        if(static::submited($r , $method)){
+            if(static::isValid($r , $method , $call_onsubmit)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 	public static function getData(Request $r , $method="post"){

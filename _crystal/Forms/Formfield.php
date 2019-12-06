@@ -20,6 +20,8 @@ class Formfield{
 	public $most_equals = null;
 	public $most_equals_error = null;
 
+	public $numeric_error = null;
+
 
     public function equals($field_name , $error='')
     {
@@ -53,6 +55,11 @@ class Formfield{
 	
 	public function placeholder($txt){
 		$this->placeholder = ($txt);
+		return $this;
+	}
+
+	public function numeric_error($txt_error){
+		$this->numeric_error = $txt_error;
 		return $this;
 	}
 	
