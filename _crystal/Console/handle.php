@@ -3,9 +3,12 @@
 
 
 function cmd_index(){
-	die('
-help:
-');
+	die("
+Crystal php framework  Copyright (C) 2019  mohammad parsa shahmaleki MPSH
+This program comes with ABSOLUTELY NO WARRANTY; for details type `php crystal license'.
+This is free software, and you are welcome to redistribute it
+under certain conditions;
+");
 }
 
 function cmd_not_found($inserted_args){
