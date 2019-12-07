@@ -17,6 +17,7 @@ return [
     'app_url' => env('APP_URL'),
 
     'database' => [
+	'use_db' => false,
         'name' => env('DB_NAME'),
         'host' => env('DB_HOST'),
         'username' => env('DB_USERNAME'),
