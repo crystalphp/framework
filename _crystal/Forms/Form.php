@@ -73,9 +73,11 @@ class Form{
                     }
                 }
 			}else{
-				$result = false;
-				$error = $f->required_error;
-				break;
+                if($f->required){
+				    $result = false;
+				    $error = $f->required_error;
+				    break;
+                }
 			}
 		}
 
@@ -100,11 +102,13 @@ class Form{
         $result = true;
         $form = static::make(new Formprint);
         foreach($form->fields as $f){
-            if($r->$method($f->name) != null){
+            if($f->required){
+                if($r->$method($f->name) != null){
 
-            }else{
-                $result = false;
-                break;
+                }else{
+                    $result = false;
+                    break;
+                }
             }
         }
 

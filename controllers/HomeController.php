@@ -3,6 +3,7 @@
 class HomeController extends Controller{
     public function index(Request $r)
     {
+
     	if(GetInfoForm::submited($r)){
     		if(GetInfoForm::isValid($r)){
     			$data = GetInfoForm::getData($r);
