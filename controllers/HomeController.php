@@ -1,8 +1,27 @@
 <?php
 
 class HomeController extends Controller{
+
+
+    public function sessions(Request $r){
+
+        return Session::get('foo');
+
+    }
+
+
+
+
+
+
+
+
+
     public function index(Request $r)
     {
+
+
+
 
     	if(GetInfoForm::submited($r)){
     		if(GetInfoForm::isValid($r)){

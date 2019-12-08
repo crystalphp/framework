@@ -13,3 +13,7 @@ $router->any('/any' , function (){
 });
 
 $router->any('/peoples' , 'HomeController@peoples');
+
+
+$router->any('/sessions' , 'HomeController@sessions');
+
