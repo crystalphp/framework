@@ -22,7 +22,6 @@ class HomeController extends Controller{
 
 
 
-
     	if(GetInfoForm::submited($r)){
     		if(GetInfoForm::isValid($r)){
     			$data = GetInfoForm::getData($r);

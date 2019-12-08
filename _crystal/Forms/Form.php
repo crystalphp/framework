@@ -85,7 +85,8 @@ class Form{
 
         if($result){
         	if($run_onsubmit){
-        		static::onsubmit($r);
+                $data = static::getData($r , $method);
+        		static::onsubmit($data , $r);
         	}
         }
 
