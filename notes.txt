@@ -1,1 +1,0 @@
-command php crystal make: commane --> command

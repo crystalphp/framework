@@ -24,6 +24,7 @@ function cmd_run($args){
 		$new_content .= $line . '
 ';
 	}
+	$new_content = substr($new_content, 0 , strlen($new_content) - 1);
 
 	$f = fopen(app_path('/.env'), 'w');
 	fwrite($f, $new_content);

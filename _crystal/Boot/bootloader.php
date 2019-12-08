@@ -4,10 +4,11 @@
 include_once libs('/Boot/APPBoot.php');
 include_once libs('/Boot/controllersBoot.php');
 include_once libs('/Boot/httpBoot.php');
-include_once libs('/Boot/jobsBoot.php');
 include_once libs('/Boot/middlewaresBoot.php');
 include_once libs('/Boot/modelsBoot.php');
 include_once libs('/Boot/formsBoot.php');
+
+include_once libs('/Boot/jobsBoot.php');
 
 
 $app_status_type = app::get_config('app_status')['type'];

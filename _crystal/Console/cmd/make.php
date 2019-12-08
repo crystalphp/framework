@@ -14,7 +14,7 @@ $items = [
 
 
 if( ! isset($args[0])){
-	echo 'Make: With This commane You Can create:
+	echo 'Make: With This command You Can create:
 ';
 	foreach ($items as $item) {
 		echo '	' . $item . '
