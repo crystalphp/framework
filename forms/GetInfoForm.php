@@ -12,7 +12,7 @@ class GetInfoForm extends Form
 		return $form; // don't delete this line. $form most be return
 	}
 
-	public static function onsubmit(Request $r){
+	public static function onsubmit($data , Request $r){
 		
 	}
 }

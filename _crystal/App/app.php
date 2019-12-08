@@ -7,7 +7,8 @@ class app{
         Middleware::call_list($middlewares);
         $controller_obj = new $action[0];
         $func_name = $action[1];
-        echo $controller_obj->$func_name(new Request);
+        echo call_user_func_array([$controller_obj , $func_name], [new Request]);
+        //echo $controller_obj->$func_name(new Request);
     }
 
     public static function get_config($key=null)

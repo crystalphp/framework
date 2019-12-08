@@ -5,7 +5,7 @@ class HomeController extends Controller{
 
     public function sessions(Request $r){
 
-        return Session::get('foo');
+        return 'hello';
 
     }
 
