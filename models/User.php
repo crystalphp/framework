@@ -3,8 +3,8 @@
 /**
  * This is a model
  */
-class ClassName extends Model
+class User extends Model
 {
-	protected static $table = 'ClassName';
+	protected static $table = 'users';
 	// you can write helper function for your model
 }

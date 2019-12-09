@@ -61,12 +61,16 @@ function env($key , $default=null){
     return app::env($key , $default);
 }
 
+function public_path($path=null){
+    return PUBLIC_PATH . $path;
+}
 
 
 
 
-
-
+function make_error($message , $file=null , $line=null){
+    die($message);
+}
 
 
 

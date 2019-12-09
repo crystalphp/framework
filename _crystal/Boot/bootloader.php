@@ -5,8 +5,10 @@ include_once libs('/Boot/APPBoot.php');
 include_once libs('/Boot/controllersBoot.php');
 include_once libs('/Boot/httpBoot.php');
 include_once libs('/Boot/middlewaresBoot.php');
-include_once libs('/Boot/modelsBoot.php');
+include_once libs('/Boot/dbBoot.php');
 include_once libs('/Boot/formsBoot.php');
+
+define('PUBLIC_PATH', str_replace('{apppath}' , app_path() , app::get_config('public_path')));
 
 include_once libs('/Boot/jobsBoot.php');
 

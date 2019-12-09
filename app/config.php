@@ -15,9 +15,10 @@ return [
 
     'app_name' => env('APP_NAME'),
     'app_url' => env('APP_URL'),
+    'public_path' => env('PUBLIC_PATH'),
 
     'database' => [
-	'use_db' => false,
+	   'use_db' => true,
         'name' => env('DB_NAME'),
         'host' => env('DB_HOST'),
         'username' => env('DB_USERNAME'),

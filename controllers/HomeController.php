@@ -19,7 +19,9 @@ class HomeController extends Controller{
 
     public function index(Request $r)
     {
-
+        
+        $users = User::all();
+        return view('User.List' , ['users' => $users]);
 
 
     	if(GetInfoForm::submited($r)){
