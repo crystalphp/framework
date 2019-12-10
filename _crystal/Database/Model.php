@@ -53,4 +53,30 @@ class Model{
 		$this->columns[$name] = $value;
 	}
 
+
+	public static function query($sql , $selectabe=false){
+		$result = DB::query($sql);
+		if($selectabe){
+			return static::convert_result_to_collection($result);
+		}else{
+			return $result;
+		}
+	}
+
+	public static function select($sql){
+		return static::query($sql , true);
+	}
+
+
+
+	public static function find($id){
+		$result = DB::query('SELECT * FROM ' . static::$table . ' WHERE id=' . addslashes($id));
+		$colect = static::convert_result_to_collection($result);
+		if(count($colect) > 0){
+			return $colect[0];
+		}else{
+			return null;
+		}
+	}
+
 }
