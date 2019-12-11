@@ -25,4 +25,8 @@ return [
         'password' => env('DB_PASSWORD'),
     ],
 
+    'cookies_default_life_time' => 100,
+
+    'encryption_key' => '12345678'
+
 ];
