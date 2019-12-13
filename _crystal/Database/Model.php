@@ -79,4 +79,70 @@ class Model{
 		}
 	}
 
+	public function save(){
+
+		$fields_sql = '';
+		$f_keys = array_keys($this->columns);
+		$keys = [];
+		for($i = 1; $i < count($f_keys); $i += 2){
+			array_push($keys, $f_keys[$i]);
+		}
+
+		if($this->id == null){
+			return static::insert($this->columns , $this);
+		}
+
+		foreach($keys as $key){
+			$v = $this->$key;
+			if($v === null){
+				$v = "NULL";
+			}else{
+				$v = '"' . addslashes($v) . '"';
+			}
+			$fields_sql .= $key . '=' . $v . ',';
+		}
+
+		$fields_sql = substr($fields_sql, 0, strlen($fields_sql) - 1);
+
+
+		$sql = 'UPDATE ' . static::$table . ' SET ' . $fields_sql . ' WHERE id="'. addslashes($this->id) .'"';
+
+		return boolval(DB::query($sql));
+	}
+
+
+
+	private static function insert($columns , Model $obj){
+		$keys = array_keys($columns);
+		$values_sql = '';
+		$columns_sql = '';
+		foreach($keys as $key){
+			$v = $obj->$key;
+			if($v === null){
+				$v = "NULL";
+			}else{
+				$v = '"' . addslashes($v) . '"';
+			}
+			$values_sql .= $v . ',';
+			$columns_sql .= $key . ',';
+		}
+
+
+		$values_sql = substr($values_sql, 0, strlen($values_sql) - 1);
+		$columns_sql = substr($columns_sql, 0, strlen($columns_sql) - 1);
+
+		$columns_sql = '(' . $columns_sql . ')';
+		$values_sql = '(' . $values_sql . ')';
+
+		$sql = 'INSERT INTO ' . static::$table . $columns_sql . ' VALUES' . $values_sql;
+
+		DB::query($sql);
+	}
+
+
+
+	public function delete(){
+		$sql = 'DELETE FROM ' . static::$table . ' WHERE id="' . addslashes($this->id) . '"';
+		return boolval(DB::query($sql));
+	}
 }

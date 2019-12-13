@@ -19,8 +19,6 @@ class HomeController extends Controller{
 
     public function index(Request $r)
     {
-        $user = User::find(1);
-        $user->save();
 
         $users = User::all();
         return view('User.List' , ['users' => $users]);
