@@ -3,7 +3,7 @@
 /**
  * This is a middleware
  */
-class ClassName extends Middleware
+class DefaultMiddleware extends Middleware
 {
 	public function handle(Request $r){
 

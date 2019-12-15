@@ -2,18 +2,6 @@
 
 // use $router variable for create routes.
 
-$router->any('/' , 'HomeController@index');
-
-$router->get('/help' , function(){
-    return 'here is help';
+$router->get('/' , function(){
+	return view('hello');
 });
-
-$router->any('/any' , function (){
-    return 'this is a any';
-});
-
-$router->any('/peoples' , 'HomeController@peoples');
-
-
-$router->any('/sessions' , 'HomeController@sessions');
-
