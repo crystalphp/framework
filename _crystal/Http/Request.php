@@ -2,12 +2,6 @@
 
 class Request implements IRequest
 {
-
-    public function routeParam($name)
-    {
-        return $_SESSION['route-params']['('.$name.')'];
-    }
-
     public function requestMethod()
     {
         return $_SERVER['REQUEST_METHOD'];

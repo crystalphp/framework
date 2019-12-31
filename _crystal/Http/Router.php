@@ -10,6 +10,33 @@ class Router
   {
         $this->request = new Request;
   }
+  private function is_paramable($route){
+    return strpos($route , '{');
+  }
+
+  private function route_is_sync($route , $uri){
+    $route_d = explode('/', $route);
+    $uri_d = explode('/', $uri);
+    if(count($route_d) != count($uri_d)){
+      return false;
+    }
+
+    $params = [];
+
+    for($i = 0; $i < count($route_d); $i++){
+        if($route_d[$i][0] == '{'){
+          $params[substr($route_d[$i], 1 , strlen($route_d) - 1)] = $uri_d[$i];
+        }else{
+            if($route_d[$i] != $uri_d[$i]){
+              return false;
+            }
+        }
+    }
+
+    return $params;
+  }
+
+
   function __call($name, $args)
   {
       if($name == 'any'){
@@ -27,6 +54,20 @@ class Router
               }
           }
       }
+
+     if($this->is_paramable($this->formatRoute($args[0]))){
+      $result_ris = $this->route_is_sync($this->formatRoute($route) , $this->formatRoute($_SERVER['REQUEST_URI']));
+      $params = $result_ris;
+        if(is_array($result_ris)){
+          if(is_string($method)){
+            app::controller($method , $middlewares , $params);
+           }else {
+              echo call_user_func_array($method, array($this->request , $params));
+           }
+           AppEventListener::on_end_request();
+            die('');
+           }
+     }
 
     if(!in_array(strtoupper($name), $this->supportedHttpMethods))
     {
@@ -89,7 +130,6 @@ class Router
     }
 
     AppEventListener::on_end_request();
-
     die('');
 
   }

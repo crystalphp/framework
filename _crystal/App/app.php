@@ -1,14 +1,14 @@
 <?php
 
 class app{
-    public static function controller($action , $middlewares=[])
+    public static function controller($action , $middlewares=[] , $params=[])
     {
         $action = explode('@' , $action);
         Middleware::call_list($middlewares);
         $controller_obj = new $action[0];
         $func_name = $action[1];
-        echo call_user_func_array([$controller_obj , $func_name], [new Request]);
-        //echo $controller_obj->$func_name(new Request);
+        $req = new Request;
+        echo call_user_func_array([$controller_obj , $func_name], [$req , $params]);
     }
 
     public static function get_config($key=null)
@@ -76,7 +76,10 @@ function make_error($message , $file=null , $line=null){
 
 
 
-
+function redirect($to){
+    header('Location: ' . $to);
+    return null;
+}
 
 
 
