@@ -39,7 +39,9 @@ if($app_status_type == 'down' || $app_status_type != 'up'){
 ');
 }
 
-session_start();
+if(! isset($_SESSION)){
+	session_start();
+}
 if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
 	$content = 'start_time='.CRYSTAL_START_TIME.';';
 	$_SESSION[app::get_config('app_name') . '_session'] = $content;

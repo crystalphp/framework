@@ -5,9 +5,12 @@ function cmd_run($args){
 
 
 $public = APP_PATH . '/public';
-echo 'crystal server started on http://localhost:8000
-';
-system('cd "' . $public . '";' . 'php -S localhost:8000');
+$port = '8000';
+if(isset($args[0])){
+	$port = $args[0];
+}
+echo 'crystal server started on http://localhost:' . $port;
+system('cd "' . $public . '";' . 'php -S localhost:' . $port);
 
 
 
