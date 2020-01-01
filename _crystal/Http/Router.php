@@ -1,11 +1,20 @@
 <?php
 class Router
 {
+  private $do_resolve = true;
+  private $base = '';
   private $request;
   private $supportedHttpMethods = array(
     "GET",
     "POST"
   );
+  public function base($path = null){
+    if($path === null){
+      return $this->base;
+    }
+
+    $this->base = $path;
+  }
   function __construct(IRequest $request = null)
   {
         $this->request = new Request;
@@ -44,6 +53,8 @@ class Router
       }
     list($route, $method) = $args;
 
+    $route = $this->base . $route;
+
       $middlewares = [];
       if(isset($args[2])){
           if(is_array($args[2])){
@@ -64,9 +75,10 @@ class Router
            }else {
               echo call_user_func_array($method, array($this->request , $params));
            }
+           $this->do_resolve = false;
            AppEventListener::on_end_request();
             die('');
-           }
+          }
      }
 
     if(!in_array(strtoupper($name), $this->supportedHttpMethods))
@@ -101,6 +113,9 @@ class Router
    */
   function resolve()
   {
+    if( ! $this->do_resolve){
+      return;
+    }
       if(!isset($this->{strtolower($this->request->requestMethod)})){
           return;
       }
