@@ -52,9 +52,14 @@ AppEventListener::on_begin_request();
 
 $router = new Router;
 
-if(app::get_config('app_status')['type'] == 'debug'){
-	include_once libs('/Console/cmd/mix-resources.php');
+
+function do_cmd($cmd){
+	include_once libs('/Console/cmd/'.$cmd.'.php');
 	cmd_run([]);
+}
+if(app::get_config('app_status')['state'] == 'debug'){
+	do_cmd('mix-resources');
+	CViewCompiler::compile_views();
 }
 
 

@@ -22,8 +22,8 @@ class app{
 
     public static function view($name, $data = null)
     {
-        $name = str_replace('.' , '/' , $name);
-        include app_path('/views/' . $name . '.cv.php');
+        $path = app_path('/resources/viewcache/' . $name . '.cv.php');
+        include_once $path;
         return '';
     }
 
@@ -44,7 +44,7 @@ function view($name, $data = null){
 }
 
 function vu($name , $data=null){
-    view($name , $data);
+    return view($name , $data);
 }
 
 function url($url=''){
@@ -80,6 +80,25 @@ function redirect($to){
     header('Location: ' . $to);
     return null;
 }
+
+
+
+
+function get_directory_tree($path , $files=[]){
+    $tmp = glob($path . '/*');
+    foreach($tmp as $t){
+        if(is_file($t)){
+            array_push($files, $t);
+        }else if(is_dir($t)){
+            array_push($files, $t);
+            $files = get_directory_tree($t , $files);
+        }
+    }
+
+    return $files;
+}
+
+
 
 
 

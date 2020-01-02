@@ -6,7 +6,7 @@
 	
 	<center>
 		<h1>Welcome to your new crystal project</h1>
-		@rendercontent
+		<?php vu_content($data); ?>
 		<h3>start your coding from app/routes.php file</h3>
 		
 	</center>
