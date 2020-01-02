@@ -31,12 +31,25 @@ class CViewCompiler{
 
 	private static function format_content($content){
 
-        $content = str_replace(')@', '); ?>', $content);
+        $content = str_replace(')@', ') ?>', $content);
         $content = str_replace('@extends(', '<?php vu(', $content);
 
 		$content = str_replace('@content', '<?php function vu_content($data){ ?>', $content);
 		$content = str_replace('@endcontent', '<?php } ?>', $content);
 		$content = str_replace('@rendercontent', '<?php vu_content($data); ?>', $content);
+
+        $content = str_replace('@foreach(', '<?php foreach(', $content);
+        $content = str_replace('@endforeach', '<?php endforeach; ?>', $content);
+        $content = str_replace('):@', '): ?>', $content);
+
+
+        $content = str_replace('@for(', '<?php for(', $content);
+        $content = str_replace('@endfor', '<?php endfor; ?>', $content);
+
+        $content = str_replace('{{', '<?= htmlspecialchars(', $content);
+        $content = str_replace('}}', ') ?>', $content);
+
+        $content = str_replace('@vu(', '<?php vu(', $content);
 
 		return $content;
 	}

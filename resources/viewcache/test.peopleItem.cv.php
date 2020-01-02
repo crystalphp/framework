@@ -1,0 +1,1 @@
+<div><?= htmlspecialchars( $data ) ?></div>

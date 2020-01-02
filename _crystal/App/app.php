@@ -23,7 +23,7 @@ class app{
     public static function view($name, $data = null)
     {
         $path = app_path('/resources/viewcache/' . $name . '.cv.php');
-        include_once $path;
+        include $path;
         return '';
     }
 

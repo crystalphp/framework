@@ -11,6 +11,10 @@
 		
 	</center>
 
+	<?php for($i = 0; $i < count($data['peoples']); $i++): ?>
+		<?php vu('test.peopleItem' , $data['peoples'][$i]) ?>
+	<?php endfor; ?>
+
 
 </body>
 </html>

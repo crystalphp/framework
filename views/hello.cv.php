@@ -6,11 +6,8 @@
 	
 	<center>
 		<h1>Welcome to your new crystal project</h1>
-		@rendercontent
 		<h3>start your coding from app/routes.php file</h3>
-		
 	</center>
-
 
 </body>
 </html>

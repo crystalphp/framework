@@ -2,4 +2,4 @@
 zxfdzfdf
 <?php } ?>
 
-<?php vu("hello"); ?>
+<?php vu("hello" , $data) ?>
