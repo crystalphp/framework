@@ -29,7 +29,7 @@ class app{
 
     public static function view($name, $data = null)
     {
-        $path = app_path('/resources/viewcache/' . $name . '.cv.php');
+        $path = app_path('/storage/viewcache/' . $name . '.cv.php');
         include $path;
         return '';
     }

@@ -26,7 +26,7 @@ class CViewCompiler{
 		$content = fread(fopen(app_path('/views/' . $name) , 'r') , filesize(app_path('/views/' . $name)) + 1);
     	$tmp_name = str_replace('/', '.', $name);
     	$content = static::format_content($content);
-    	$target = fopen(app_path('/resources/viewcache/' . $tmp_name), 'w');
+    	$target = fopen(app_path('/storage/viewcache/' . $tmp_name), 'w');
     	fwrite($target, $content);
     	fclose($target);
 	}
