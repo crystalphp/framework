@@ -1,5 +1,9 @@
 <?php
 
+namespace Crystal\Middlewares;
+
+use Crystal\App\app;
+
 class Middleware{
     public static function call_requireds()
     {

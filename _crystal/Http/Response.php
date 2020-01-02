@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\Http;
+
 class Response{
 
 	private static $httpcodes_default_response = [
@@ -115,11 +117,3 @@ class Response{
 		return;
 	}
 }
-
-
-
-function httpcode($code){
-	return Response::httpcode($code);
-}
-
-

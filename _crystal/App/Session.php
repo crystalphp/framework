@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\App;
+
 class Session{
 	public static function get($key , $default=null){
 		if(isset($_SESSION[$key])){

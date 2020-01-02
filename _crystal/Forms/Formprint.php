@@ -1,5 +1,6 @@
 <?php
 
+namespace Crystal\Froms;
 
 class Formprint{
 	

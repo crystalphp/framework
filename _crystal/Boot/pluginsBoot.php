@@ -6,7 +6,7 @@ function load_once_plugin($plugname){
 	// read load list
 	$f_ll = fopen($path . '/loadlist.lst', 'r');
 	$loadlist = explode('
-', fread($f_ll , filesize($path . '/loadlist.lst')));
+', fread($f_ll , filesize($path . '/loadlist.lst')+1));
 
 
 	include_once $path . '/main.php';
@@ -25,7 +25,7 @@ function load_once_plugin($plugname){
 
 $plugins = glob(app_path('/plugins/*'));
 foreach($plugins as $plugin){
-	$pn_tmp = end(explode('/', $plugin));
+	$pn_tmp = basename($plugin);
 	load_once_plugin($pn_tmp);
 }
 

@@ -1,5 +1,9 @@
 <?php
 
+namespace Crystal\Controllers;
+
+use Crystal\Middlewares\Middleware;
+
 class Controller{
 
 	public function middleware($middleware_s){

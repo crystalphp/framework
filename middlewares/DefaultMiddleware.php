@@ -1,8 +1,10 @@
 <?php
 
-/**
- * This is a middleware
- */
+namespace Middlewares;
+
+use Crystal\Middlewares\Middleware;
+use Crystal\Http\Request;
+
 class DefaultMiddleware extends Middleware
 {
 	public function handle(Request $r){

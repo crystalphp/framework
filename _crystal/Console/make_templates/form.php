@@ -1,8 +1,10 @@
 <?php
 
-/**
- * This is a form
- */
+namespace Forms;
+
+use Crystal\Forms\Form;
+use Crystal\Http\Request;
+
 class ClassName extends Form
 {
 	public function make(Formprint $form){

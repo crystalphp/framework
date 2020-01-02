@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\Http;
+
 class Request implements IRequest
 {
     public function requestMethod()

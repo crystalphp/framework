@@ -1,8 +1,9 @@
 <?php
 
-/**
- * This is a model
- */
+namespace Models;
+
+use Crystal\Database\Model;
+
 class ClassName extends Model
 {
 	protected static $table = 'ClassName';

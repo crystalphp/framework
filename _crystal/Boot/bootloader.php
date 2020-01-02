@@ -24,6 +24,12 @@ unset($GLOBALS['db_name']);
 unset($GLOBALS['result']);
 
 
+use Crystal\App\app;
+use Crystal\App\AppEventListener;
+use Crystal\App\CViewCompiler;
+use Crystal\Http\Router;
+
+
 include_once libs('/Boot/pluginsBoot.php');
 
 
@@ -39,9 +45,7 @@ if($app_status_type == 'down' || $app_status_type != 'up'){
 ');
 }
 
-if(! isset($_SESSION)){
-	session_start();
-}
+session_start();
 if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
 	$content = 'start_time='.CRYSTAL_START_TIME.';';
 	$_SESSION[app::get_config('app_name') . '_session'] = $content;

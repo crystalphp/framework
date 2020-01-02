@@ -1,5 +1,7 @@
 <?php
 
+use Crystal\App\app;
+
 return [
 
     'middlewares' => [
@@ -9,20 +11,20 @@ return [
     ],
 
     'app_status' => [
-    	'state' => env('STATUS_STATE'),
-    	'type' => env('STATUS_TYPE'),
+    	'state' => app::env('STATUS_STATE'),
+    	'type' => app::env('STATUS_TYPE'),
     ],
 
-    'app_name' => env('APP_NAME'),
-    'app_url' => env('APP_URL'),
-    'public_path' => env('PUBLIC_PATH'),
+    'app_name' => app::env('APP_NAME'),
+    'app_url' => app::env('APP_URL'),
+    'public_path' => app::env('PUBLIC_PATH'),
 
     'database' => [
 	   'use_db' => false,
-        'name' => env('DB_NAME'),
-        'host' => env('DB_HOST'),
-        'username' => env('DB_USERNAME'),
-        'password' => env('DB_PASSWORD'),
+        'name' => app::env('DB_NAME'),
+        'host' => app::env('DB_HOST'),
+        'username' => app::env('DB_USERNAME'),
+        'password' => app::env('DB_PASSWORD'),
     ],
 
     'cookies_default_life_time' => 2592000,

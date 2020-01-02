@@ -1,10 +1,11 @@
 <?php
 
-/**
- * This is a model
- */
+namespace Models;
+
+use Crystal\Database\Model;
+
 class User extends Model
 {
-	protected static $table = 'users';
+	protected static $table = 'User';
 	// you can write helper function for your model
 }

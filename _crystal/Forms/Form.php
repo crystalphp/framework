@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\Forms;
+
 class Form{
 
     public static $error_message = null;

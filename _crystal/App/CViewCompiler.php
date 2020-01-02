@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\App;
+
 class CViewCompiler{
 	public static function compile_views(){
     	$files = get_directory_tree(app_path('/views'));

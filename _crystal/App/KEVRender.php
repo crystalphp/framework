@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\App;
+
 class KEVRender{
 
 	public function render_by_content($content){

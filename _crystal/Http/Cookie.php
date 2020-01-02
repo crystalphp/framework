@@ -1,5 +1,9 @@
 <?php
 
+namespace Crystal\Http;
+
+use Crystal\App\app;
+
 class Cookie{
 	public function set($name , $value , $time=null , $path='/'){
 		if($time === null){

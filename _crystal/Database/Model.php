@@ -1,5 +1,7 @@
 <?php
 
+namespace Crystal\Database;
+
 class Model{
 
 	private $columns = [];

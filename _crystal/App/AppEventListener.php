@@ -1,5 +1,10 @@
 <?php
 
+namespace Crystal\App;
+
+use Crystal\Http\Request;
+use \Closure;
+
 class AppEventListener{
 
     private static $on_starts = [];
@@ -29,7 +34,7 @@ class AppEventListener{
         }
     }
 
-    public static function on_error_404(Closure $func=null)
+    public static function on_error_404(\Closure $func=null)
     {
         if($func === null){
             foreach(static::$on_error_404 as $on_tmp){
