@@ -2,6 +2,8 @@
 
 namespace Crystal\Forms;
 
+use Crystal\Forms\Formprint;
+
 class Form{
 
     public static $error_message = null;
@@ -27,7 +29,7 @@ class Form{
 			$render_html = '<textarea name="'.$field_obj->name.'" '.$required.' '.$maxlength.' '.$attributes.'>'.$field_obj->default.'</textarea>';
 		}
 		
-		echo $render_html;
+		return $render_html;
 	}
 	
 	public static function isValid(Request $r , $method='post' , $run_onsubmit=true){

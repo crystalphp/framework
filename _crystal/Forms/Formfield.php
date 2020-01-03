@@ -1,6 +1,6 @@
 <?php
 
-namespace Crystal\Froms;
+namespace Crystal\Forms;
 
 class Formfield{
 	

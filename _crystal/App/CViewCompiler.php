@@ -53,6 +53,8 @@ class CViewCompiler{
 
         $content = str_replace('@vu(', '<?php vu(', $content);
 
+        $content = str_replace('@fr(', '<?= form_render(', $content);
+
 		return $content;
 	}
 }

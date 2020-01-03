@@ -3,6 +3,12 @@
 use Crystal\App\app;
 use Crystal\Http\Response;
 
+function form_render($str , $attributes=''){
+    $str = explode('@', $str);
+    $frm = '\Forms\\' . $str[0];
+    return $frm::render($str[1] , $attributes);
+}
+
 function view($name, $data = null){
     return app::view($name , $data);
 }
