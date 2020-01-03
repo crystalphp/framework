@@ -55,6 +55,13 @@ class CViewCompiler{
 
         $content = str_replace('@fr(', '<?= form_render(', $content);
 
+        $content = str_replace('@use(', '<?php use ', $content);
+
+        $content = str_replace(');@', '; ?>', $content);
+
+        $content = str_replace('<@', '<?php', $content);
+        $content = str_replace('@>', '?>', $content);
+
 		return $content;
 	}
 }

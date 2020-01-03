@@ -21,11 +21,11 @@ class DB{
 	}
 
 
-	public function query($sql){
+	public static function query($sql){
 		return mysqli_query(static::$connection , $sql);
 	}
 
-	public function close_connection(){
+	public static function close_connection(){
 		mysqli_close(static::$connection);
 	}
 

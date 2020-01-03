@@ -3,6 +3,7 @@
 namespace Crystal\Middlewares;
 
 use Crystal\App\app;
+use Crystal\Http\Request;
 
 class Middleware{
     public static function call_requireds()
@@ -14,7 +15,8 @@ class Middleware{
     public static function call_list($middlewares)
     {
         foreach($middlewares as $middleware){
-            $tmp_obj = new $middleware;
+            $middleware_n = '\Middlewares\\' . $middleware;
+            $tmp_obj = new $middleware_n;
             $result = $tmp_obj->handle(new Request);
             if($result !== false){
                 die($result);
