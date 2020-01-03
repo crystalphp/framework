@@ -51,6 +51,11 @@ if(in_array($args[0], $items)){
 			$content = fread($ftemplate , filesize(libs('/Console/make_templates/' . $args[0] . '.php')));
 			$content = str_replace('ClassName', $args[1], $content);
 
+			if($args[0] == 'model'){
+				$tbl_name = strtolower($args[1]) . 's';
+				$content = str_replace('TableName', $tbl_name, $content);
+			}
+
 			fwrite($f, $content);
 
 			die($args[0].' Created Successfuly.
