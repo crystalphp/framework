@@ -33,6 +33,12 @@ class CViewCompiler{
 
 	private static function format_content($content){
 
+        $random_key = '<' . app::env('APP_NAME') . rand() . time() . 'toreplaceat' . '>';
+        while(strpos($content, $random_key)){
+            $random_key .= time() . '>';
+        }
+        $content = str_replace('\@', $random_key, $content);
+
         $content = str_replace(')@', ') ?>', $content);
         $content = str_replace('@extends(', '<?php vu(', $content);
 
@@ -61,6 +67,12 @@ class CViewCompiler{
 
         $content = str_replace('<@', '<?php', $content);
         $content = str_replace('@>', '?>', $content);
+
+
+
+
+
+        $content = str_replace($random_key, '@', $content);
 
 		return $content;
 	}
