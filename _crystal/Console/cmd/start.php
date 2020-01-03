@@ -9,8 +9,17 @@ $port = '8000';
 if(isset($args[0])){
 	$port = $args[0];
 }
+
+
 echo 'crystal server started on http://localhost:' . $port;
-system('cd "' . $public . '";' . 'php -S localhost:' . $port);
+if(false){
+
+}else{
+	$command = '$SHELL ' . APP_PATH . '/_crystal/Console/start.sh ' . $public . ' ' . $port;
+	system($command);
+}
+
+
 
 
 
