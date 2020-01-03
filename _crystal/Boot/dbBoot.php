@@ -13,7 +13,7 @@ foreach($models as $model){
     }
 }
 
-
+use Crystal\Database\DB;
 
 $db_conf = app::get_config('database');
 if($db_conf['use_db']){
