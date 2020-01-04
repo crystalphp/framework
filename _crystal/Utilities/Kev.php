@@ -1,8 +1,8 @@
 <?php
 
-namespace Crystal\App;
+namespace Crystal\Utilities;
 
-use Crystal\App\KEVRender;
+use Crystal\Utilities\KEVRender;
 
 class Kev{
 	public static function get($fname , $key=null , $default=null){

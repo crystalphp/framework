@@ -54,8 +54,15 @@ class CViewCompiler{
         $content = str_replace('@for(', '<?php for(', $content);
         $content = str_replace('@endfor', '<?php endfor; ?>', $content);
 
+        $content = str_replace('@if(', '<?php if(', $content);
+        $content = str_replace('@else', '<?php else: ?>', $content);
+        $content = str_replace('@endif', '<?php endif; ?>', $content);
+
         $content = str_replace('{{', '<?= htmlspecialchars(', $content);
         $content = str_replace('}}', ') ?>', $content);
+
+        $content = str_replace('{!', '<?= ', $content);
+        $content = str_replace('!}', ' ?>', $content);
 
         $content = str_replace('@vu(', '<?php vu(', $content);
 

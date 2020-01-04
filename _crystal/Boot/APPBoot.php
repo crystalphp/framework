@@ -1,9 +1,6 @@
 <?php
 
 
-include_once libs('/App/KEVRender.php');
-include_once libs('/App/Kev.php');
-include_once libs('/App/Session.php');
 include_once libs('/App/app.php');
 include_once libs('/App/helpers.php');
 include_once libs('/App/CViewCompiler.php');

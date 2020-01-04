@@ -1,6 +1,7 @@
 <?php
 
 
+include_once libs('/Boot/utilitiesBoot.php');
 include_once libs('/Boot/APPBoot.php');
 include_once libs('/Boot/controllersBoot.php');
 include_once libs('/Boot/httpBoot.php');

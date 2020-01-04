@@ -2,6 +2,7 @@
 
 use Crystal\App\app;
 use Crystal\Http\Response;
+use Crystal\Http\Request;
 
 function form_render($str , $attributes=''){
     $str = explode('@', $str);
@@ -74,3 +75,19 @@ function httpcode($code){
     return Response::httpcode($code);
 }
 
+
+function request(){
+    return new Request;
+}
+
+function response(){
+    return new Response;
+}
+
+function session(){
+    return new \Crystal\Utilities\Session;
+}
+
+function auth(){
+    return new \Crystal\Utilities\Auth;
+}
