@@ -34,8 +34,6 @@ use Crystal\Http\Router;
 include_once libs('/Boot/pluginsBoot.php');
 
 
-define('PUBLIC_PATH', str_replace('{apppath}' , app_path() , app::get_config('public_path')));
-
 include_once libs('/Boot/jobsBoot.php');
 
 
