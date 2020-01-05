@@ -3,6 +3,7 @@
 namespace Crystal\Forms;
 
 use Crystal\Forms\Formprint;
+use Crystal\Http\Request;
 
 class Form{
 
@@ -38,7 +39,41 @@ class Form{
 		$result = true;
 		$error = null;
         foreach($form->fields as $f){
-			if($r->$m($f->name) != null){
+			if($r->$m($f->name) != null || $r->file($f->name)){
+                if($f->type == 'file'){
+                    $file = request()->file($f->name);
+                    if($f->file_validtypes != []){
+                        if( ! $file->validTypes($f->file_validtypes)){
+                            $result = false;
+                            $error = $f->file_validtypes_error;
+                            break;
+                        }
+                    }
+
+                    if($f->file_invalidtypes != []){
+                        if(!$file->invalidTypes($f->file_invalidtypes)){
+                            $result = false;
+                            $error = $f->file_invalidtypes_error;
+                            break;
+                        }
+                    }
+
+                    if($f->file_max_size != null){
+                        if($file->size() > $f->file_max_size){
+                            $result = false;
+                            $error = $f->file_max_size_error;
+                            break;
+                        }
+                    }else{
+                        if($f->max != null){
+                            if($file->size() > $f->max){
+                                $result = false;
+                                $error = $f->max_error;
+                                break;
+                            }
+                        }
+                    }
+                }
 				if($f->type == 'number'){
 					if( ! is_numeric($r->$m($f->name))){
 						$result = false;
@@ -78,9 +113,19 @@ class Form{
                 }
 			}else{
                 if($f->required){
-				    $result = false;
-				    $error = $f->required_error;
-				    break;
+                    if($f->type == 'file'){
+                        if($r->file($f->name)){
+
+                        }else{
+                            $result = false;
+                            $error = $f->required_error;
+                            break;
+                        }
+                    }else{
+				        $result = false;
+				        $error = $f->required_error;
+    				    break;
+                    }
                 }
 			}
 		}
@@ -111,8 +156,17 @@ class Form{
                 if($r->$method($f->name) != null){
 
                 }else{
-                    $result = false;
-                    break;
+                    if($f->type == 'file'){
+                        if($r->file($f->name)){
+
+                        }else{
+                            $result = false;
+                            break;
+                        }
+                    }else{
+                        $result = false;
+                        break;
+                    }
                 }
             }
         }

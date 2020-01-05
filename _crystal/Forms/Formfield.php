@@ -24,6 +24,34 @@ class Formfield{
 	public $numeric_error = null;
 
 
+	public $file_max_size = null;
+	public $file_max_size_error = '';
+
+	public $file_validtypes = [];
+	public $file_validtypes_error = '';
+
+	public $file_invalidtypes = [];
+	public $file_invalidtypes_error = '';
+
+
+
+	public function maxsize($maxsize , $error=''){
+		$this->file_max_size = $maxsize;
+		$this->file_max_size_error = $error;
+	}
+
+	public function validtypes($validtypes , $error=''){
+		$this->file_validtypes = $validtypes;
+		$this->file_validtypes_error = $error;
+	}
+
+	public function invalidtypes($invalidtypes , $error=''){
+		$this->file_invalidtypes = $invalidtypes;
+		$this->file_invalidtypes_error = $error;
+	}
+
+
+
     public function equals($field_name , $error='')
     {
         $this->most_equals = $field_name;
@@ -50,7 +78,7 @@ class Formfield{
 	}
 	
 	public function default($val){
-		$this->default = ($val);
+		$this->default = htmlspecialchars($val);
 		return $this;
 	}
 	

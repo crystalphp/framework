@@ -4,6 +4,14 @@ namespace Crystal\Http;
 
 class Request implements IRequest
 {
+    public function file($key){
+        if(isset($_FILES[$key])){
+            return new \Crystal\Forms\HttpFile($key);
+        }else{
+          return null;
+        }
+    }
+
     public function requestMethod()
     {
         return $_SERVER['REQUEST_METHOD'];

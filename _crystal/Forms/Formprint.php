@@ -34,6 +34,10 @@ class Formprint{
 		return static::add_new($name , 'date');
 	}
 
+	public function file($name){
+		return static::add_new($name , 'file');
+	}
+
     public function textarea($name)
     {
         return static::add_new($name , 'textarea');
