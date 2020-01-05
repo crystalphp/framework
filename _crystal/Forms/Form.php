@@ -46,6 +46,7 @@ class Form{
                         if( ! $file->validTypes($f->file_validtypes)){
                             $result = false;
                             $error = $f->file_validtypes_error;
+                            $error = str_replace('{types}', \Crystal\Utilities\Str::make_string_from_array($f->file_validtypes), $error);
                             break;
                         }
                     }
@@ -54,6 +55,7 @@ class Form{
                         if(!$file->invalidTypes($f->file_invalidtypes)){
                             $result = false;
                             $error = $f->file_invalidtypes_error;
+                            $error = str_replace('{types}', \Crystal\Utilities\Str::make_string_from_array($f->file_invalidtypes), $error);
                             break;
                         }
                     }

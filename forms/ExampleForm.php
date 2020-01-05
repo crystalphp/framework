@@ -4,6 +4,7 @@ namespace Forms;
 
 use Crystal\Forms\Form;
 use Crystal\Http\Request;
+use Crystal\Forms\Formprint;
 
 class ExampleForm extends Form
 {

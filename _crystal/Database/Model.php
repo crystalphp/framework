@@ -7,12 +7,12 @@ class Model{
 	private $columns = [];
 
 	public static function convert_result_to_collection($result){
-		$collection = [];
-		while($row = mysqli_fetch_array($result)){
-			array_push($collection , new static($row));
-		}
-
-		return $collection;
+		//$collection = [];
+		//while($row = mysqli_fetch_array($result)){
+		//	array_push($collection , new static($row));
+		//}
+		return new Collection($result , static::class);
+		//return $collection;
 	}
 
 

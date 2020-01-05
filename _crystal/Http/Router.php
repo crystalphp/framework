@@ -53,6 +53,24 @@ class Router
   }
 
 
+  public function redirect($from , $to){
+    $from = $this->formatRoute($this->base . $from);
+    $to = $this->formatRoute($this->base . $to);
+    $here = $this->formatRoute($this->request->path());
+
+    if($from == $here){
+      redirect($to);
+      die('');
+    }
+  }
+
+  public function view($uri , $view){
+      $this->any($uri , function() use ($view){
+        return view($view);
+      });
+  }
+
+
   function __call($name, $args)
   {
       if($name == 'any'){

@@ -20,7 +20,7 @@ return [
     'public_path' => app::env('PUBLIC_PATH'),
 
     'database' => [
-	   'use_db' => false,
+	   'use_db' => true,
         'name' => app::env('DB_NAME'),
         'host' => app::env('DB_HOST'),
         'username' => app::env('DB_USERNAME'),
