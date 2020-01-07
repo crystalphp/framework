@@ -11,7 +11,8 @@ if(isset($args[0])){
 }
 
 
-echo 'crystal server started on http://localhost:' . $port;
+echo 'crystal server started on http://localhost:' . $port . '
+';
 if(false){
 
 }else{

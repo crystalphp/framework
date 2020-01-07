@@ -3,10 +3,10 @@
 namespace Crystal\Database;
 
 class Collection implements \ArrayAccess{
-	function __construct($result , $type){
+	function __construct($result , $model){
 		$collection = [];
 		while($row = mysqli_fetch_array($result)){
-			array_push($collection , new $type($row));
+			array_push($collection , new $model($row));
 		}
 
 		$this->data = $collection;
@@ -119,6 +119,6 @@ class Collection implements \ArrayAccess{
     }
 
     public function count(){
-    	return count($this);
+    	return count($this->data);
     }
 }

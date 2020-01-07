@@ -1,28 +1,20 @@
 <?php
 
+$bootloaders = [
+	'utilitiesBoot',
+	'APPBoot',
+	'controllersBoot',
+	'httpBoot',
+	'middlewaresBoot',
+	'dbBoot',
+	'formsBoot',
+];
 
-include_once libs('/Boot/utilitiesBoot.php');
-include_once libs('/Boot/APPBoot.php');
-include_once libs('/Boot/controllersBoot.php');
-include_once libs('/Boot/httpBoot.php');
-include_once libs('/Boot/middlewaresBoot.php');
-include_once libs('/Boot/dbBoot.php');
-include_once libs('/Boot/formsBoot.php');
+foreach($bootloaders as $bootloader){
+	include_once libs('/Boot/' . $bootloader . '.php');
+}
 
-unset($GLOBALS['controllers']);
-unset($GLOBALS['models']);
-unset($GLOBALS['model']);
-unset($GLOBALS['forms']);
-unset($GLOBALS['form']);
-unset($GLOBALS['middleware']);
-unset($GLOBALS['middlewares']);
-unset($GLOBALS['controller']);
-unset($GLOBALS['db_conf']);
-unset($GLOBALS['db_host']);
-unset($GLOBALS['db_user']);
-unset($GLOBALS['db_pass']);
-unset($GLOBALS['db_name']);
-unset($GLOBALS['result']);
+
 
 
 use Crystal\App\app;
@@ -66,7 +58,47 @@ if(app::get_config('app_status')['state'] == 'debug'){
 }
 
 
+
+
+$variables_to_unset = [
+	'controllers',
+	'models',
+	'model',
+	'forms',
+	'form',
+	'middleware',
+	'middlewares',
+	'controller',
+	'db_conf',
+	'db_host',
+	'db_user',
+	'db_pass',
+	'db_name',
+	'result',
+	'files',
+	'file',
+	'ex',
+	'ex_s',
+	'app_path',
+	'bootloaders',
+	'bootloader',
+	'plugins',
+	'plugin',
+	'pn_tmp',
+	'app_status_type',
+	'content',
+];
+foreach($variables_to_unset as $vtu){
+	unset($GLOBALS[$vtu]);
+}
+unset($GLOBALS['variables_to_unset']);
+unset($GLOBALS['vtu']);
+
+
+
+
 include_once app_path('/app/routes.php');
+
 
 
 

@@ -2,6 +2,6 @@
 
 // use $router variable for create routes.
 
-$router->any('/' , function(){
+$router->get('/' , function(){
 	return view('hello');
 });

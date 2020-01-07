@@ -7,53 +7,37 @@ use \Closure;
 
 class AppEventListener{
 
-    private static $on_starts = [];
-    private static $on_begin_requests = [];
+    private static $on_start = [];
+    private static $on_begin_request = [];
     private static $on_error_404 = [];
-    private static $on_end_requests = [];
+    private static $on_end_request = [];
 
-    public static function on_start(Closure $func=null)
-    {
+    private static function on($name , Closure $func=null){
         if($func === null){
-            foreach(static::$on_starts as $on_start_tmp){
-                $on_start_tmp(new Request);
+            foreach(static::$$name as $tmp){
+                $tmp(new Request);
             }
         }else{
-            array_push(static::$on_starts , $func);
+            array_push(static::$$name , $func);
         }
     }
 
-    public static function on_begin_request(Closure $func=null)
-    {
-        if($func === null){
-            foreach(static::$on_begin_requests as $on_tmp){
-                $on_tmp(new Request);
-            }
-        }else{
-            array_push(static::$on_begin_requests , $func);
-        }
+
+    public function on_error_404($func=null){
+        static::on('on_error_404' , $func);
     }
 
-    public static function on_error_404(\Closure $func=null)
-    {
-        if($func === null){
-            foreach(static::$on_error_404 as $on_tmp){
-                $on_tmp(new Request);
-            }
-        }else{
-            array_push(static::$on_error_404 , $func);
-        }
+    public function on_begin_request($func=null){
+        static::on('on_begin_request' , $func);
     }
 
-    public static function on_end_request(Closure $func=null)
-    {
-        if($func === null){
-            foreach(static::$on_end_requests as $on_tmp){
-                $on_tmp(new Request);
-            }
-        }else{
-            array_push(static::$on_end_requests , $func);
-        }
+    public function on_start($func=null){
+        static::on('on_start' , $func);
     }
+
+    public function on_end_request($func=null){
+        static::on('on_end_request' , $func);
+    }
+
 }
 

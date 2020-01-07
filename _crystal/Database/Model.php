@@ -5,37 +5,32 @@ namespace Crystal\Database;
 class Model{
 
 	private $columns = [];
+	private $changed_columns = [];
 
-	public static function convert_result_to_collection($result){
-		//$collection = [];
-		//while($row = mysqli_fetch_array($result)){
-		//	array_push($collection , new static($row));
-		//}
-		return new Collection($result , static::class);
-		//return $collection;
+
+	public static function q(){
+		return new QueryBuilder(static::class);
 	}
 
 
-	public function all($fields=['*']){
-		$fields_sql = '';
-		for($i = 0; $i < count($fields); $i++){
-			$tmp = ',';
-			if($i + 1 == count($fields)){
-				$tmp = '';
-			}
-			$fields_sql .= $fields[$i] . $tmp;
-		}
-		$sql = 'SELECT ' . $fields_sql . ' FROM ' . static::$table;
-		
+	public static function convert_result_to_collection($result){
+		return new Collection($result , static::class);
+	}
 
-		return static::convert_result_to_collection(DB::query($sql));
+	public static function tbl_name(){
+		return static::$table;
+	}
+
+
+	public function all($fields=['*']){		
+		return static::q()->get($fields);
 	}
 
 
 	public function __construct($row=null){
 		if($row != null){
 			foreach($row as $key => $value){
-				$this->$key = $value;
+				$this->columns[$key] = $value;
 			}
 		}
 	}
@@ -53,6 +48,9 @@ class Model{
 
 	public function __set($name , $value){
 		$this->columns[$name] = $value;
+		if( ! in_array($name , $this->changed_columns)){
+			array_push($this->changed_columns, $name);
+		}
 	}
 
 
@@ -72,18 +70,12 @@ class Model{
 
 
 	public static function find($id){
-		$result = DB::query('SELECT * FROM ' . static::$table . ' WHERE id=' . addslashes($id));
-		$colect = static::convert_result_to_collection($result);
-		if(count($colect) > 0){
-			return $colect[0];
-		}else{
-			return null;
-		}
+		return static::q()->where('id' , '=' , $id)->get()->first();
 	}
 
 	public function save(){
 
-		$fields_sql = '';
+		/*$fields_sql = '';
 		$f_keys = array_keys($this->columns);
 		$keys = [];
 		for($i = 1; $i < count($f_keys); $i += 2){
@@ -109,7 +101,23 @@ class Model{
 
 		$sql = 'UPDATE ' . static::$table . ' SET ' . $fields_sql . ' WHERE id="'. addslashes($this->id) .'"';
 
-		return boolval(DB::query($sql));
+		return boolval(DB::query($sql));*/
+
+
+
+		if($this->id == null){
+			return static::insert($this->columns , $this);
+		}
+
+		$keys = $this->changed_columns;
+		if(count($keys) <= 0){
+			return;
+		}
+		$columns_dic = [];
+		for($i = 0; $i < count($keys); $i++){
+			$columns_dic[$keys[$i]] = $this->columns[$keys[$i]];
+		}
+		return static::q()->where('id' , '=' , $this->id)->update($columns_dic);
 	}
 
 
@@ -144,7 +152,6 @@ class Model{
 
 
 	public function delete(){
-		$sql = 'DELETE FROM ' . static::$table . ' WHERE id="' . addslashes($this->id) . '"';
-		return boolval(DB::query($sql));
+		return static::q()->where('id' , '=' , $this->id)->delete();
 	}
 }
