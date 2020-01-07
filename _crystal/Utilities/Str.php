@@ -11,4 +11,8 @@ class Str{
 		$str = substr($str, 0 , strlen($str) - 2);
 		return $str;
 	}
+
+	public function remove_last_chars($string , $char_count){
+		return substr($string, 0 , strlen($string) - $char_count);
+	}
 }

@@ -3,6 +3,7 @@
 use Crystal\App\app;
 
 include_once libs('/Database/QueryBuilder.php');
+include_once libs('/Database/Relations/OneToMany.php');
 include_once libs('/Database/Model.php');
 include_once libs('/Database/Collection.php');
 include_once libs('/Database/DB.php');

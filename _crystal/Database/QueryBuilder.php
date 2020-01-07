@@ -113,7 +113,13 @@ class QueryBuilder{
 
 		$columns_str = [];
 		foreach($columns as $key => $value){
-			array_push($columns_str , $key . '=' . '"' . addslashes($value) . '"');
+			$v = addslashes($value);
+			if($value === null){
+				$v = 'NULL';
+			}else{
+				$v = '"' . $v . '"';
+			}
+			array_push($columns_str , $key . '=' . $v);
 		}
 		$columns_str = Str::make_string_from_array($columns_str);
 

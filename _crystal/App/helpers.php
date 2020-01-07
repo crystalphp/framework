@@ -91,3 +91,7 @@ function session(){
 function auth(){
     return new \Crystal\Utilities\Auth;
 }
+
+function db(){
+    return new \Crystal\Database\DB;
+}

@@ -2,14 +2,26 @@
 
 namespace Crystal\Database;
 
+use Crystal\Database\Relations\OneToMany;
+
 class Model{
 
 	private $columns = [];
 	private $changed_columns = [];
+	private $relation_tables_cache = [];
 
 
 	public static function q(){
 		return new QueryBuilder(static::class);
+	}
+
+	public function sql($sql){
+		$res = DB::query($sql);
+		if($res === true || $res === false){
+			return $res;
+		}
+
+		return static::convert_result_to_collection($res);
 	}
 
 
@@ -41,6 +53,17 @@ class Model{
 		if(isset($this->columns[$name])){
 			return $this->columns[$name];
 		}else{
+			if(isset($this->relation_tables_cache[$name])){
+				return $this->relation_tables_cache[$name];
+			}
+			if(method_exists($this, $name)){
+				$res = $this->$name();
+				if(is_a($res, QueryBuilder::class)){
+					$res = $res->get();
+				}
+				$this->relation_tables_cache[$name] = $res;
+				return $res;
+			}
 			return null;
 		}
 	}
@@ -74,37 +97,6 @@ class Model{
 	}
 
 	public function save(){
-
-		/*$fields_sql = '';
-		$f_keys = array_keys($this->columns);
-		$keys = [];
-		for($i = 1; $i < count($f_keys); $i += 2){
-			array_push($keys, $f_keys[$i]);
-		}
-
-		if($this->id == null){
-			return static::insert($this->columns , $this);
-		}
-
-		foreach($keys as $key){
-			$v = $this->$key;
-			if($v === null){
-				$v = "NULL";
-			}else{
-				$v = '"' . addslashes($v) . '"';
-			}
-			$fields_sql .= $key . '=' . $v . ',';
-		}
-
-		$fields_sql = substr($fields_sql, 0, strlen($fields_sql) - 1);
-
-
-		$sql = 'UPDATE ' . static::$table . ' SET ' . $fields_sql . ' WHERE id="'. addslashes($this->id) .'"';
-
-		return boolval(DB::query($sql));*/
-
-
-
 		if($this->id == null){
 			return static::insert($this->columns , $this);
 		}
@@ -153,5 +145,21 @@ class Model{
 
 	public function delete(){
 		return static::q()->where('id' , '=' , $this->id)->delete();
+	}
+
+
+
+
+
+
+
+	public function hasMany($model , $fk=null){
+		$otm = new OneToMany;
+		return $otm->has($this , $model , $fk);
+	}
+
+	public function belongsTo($model , $fk=null){
+		$otm = new OneToMany;
+		return $otm->belongs($this , $model , $fk);
 	}
 }
