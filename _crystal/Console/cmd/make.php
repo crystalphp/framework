@@ -8,6 +8,7 @@ $items = [
 	'model',
 	'middleware',
 	'form',
+	'migration',
 ];
 
 
