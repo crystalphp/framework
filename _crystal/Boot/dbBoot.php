@@ -7,6 +7,7 @@ include_once libs('/Database/Relations/OneToMany.php');
 include_once libs('/Database/Model.php');
 include_once libs('/Database/Collection.php');
 include_once libs('/Database/DB.php');
+include_once libs('/Database/Migrations/Migration.php');
 include_once libs('/Database/Connector.php');
 $models = glob(app_path('/models/*.php'));
 foreach($models as $model){
@@ -19,6 +20,7 @@ use Crystal\Database\DB;
 
 $db_conf = app::get_config('database');
 if($db_conf['use_db']){
+	$db_conf = $db_conf['connections'][$db_conf['db']];
 	$db_host = $db_conf['host'];
 	$db_user = $db_conf['username'];
 	$db_pass = $db_conf['password'];

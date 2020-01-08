@@ -14,13 +14,12 @@ foreach($bootloaders as $bootloader){
 	include_once libs('/Boot/' . $bootloader . '.php');
 }
 
-
-
-
 use Crystal\App\app;
 use Crystal\App\AppEventListener;
 use Crystal\App\CViewCompiler;
 use Crystal\Http\Router;
+if( ! defined('JUST_BOOTLOADERS')){
+
 
 
 include_once libs('/Boot/pluginsBoot.php');
@@ -29,8 +28,8 @@ include_once libs('/Boot/pluginsBoot.php');
 include_once libs('/Boot/jobsBoot.php');
 
 
-$app_status_type = app::get_config('app_status')['type'];
-if($app_status_type == 'down' || $app_status_type != 'up'){
+$app_status = app::get_config('app_status');
+if($app_status == 'down' || $app_status != 'up'){
 	die('
 <center><h3>We Are Down</h3></center>
 ');
@@ -52,7 +51,7 @@ function do_cmd($cmd){
 	include_once libs('/Console/cmd/'.$cmd.'.php');
 	cmd_run([]);
 }
-if(app::get_config('app_status')['state'] == 'debug'){
+if(app::get_config('app_debug') == 'true'){
 	do_cmd('mix-resources');
 	CViewCompiler::compile_views();
 }
@@ -98,7 +97,7 @@ unset($GLOBALS['vtu']);
 
 
 include_once app_path('/app/routes.php');
-
+}
 
 
 
