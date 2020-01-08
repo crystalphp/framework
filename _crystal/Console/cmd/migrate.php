@@ -10,8 +10,7 @@ function cmd_run($args){
     
     $migrations = glob(app_path('/migrations/*.php'));
     $migrated_list = \Crystal\Utilities\Str::get_list_from_string(
-        fread(fopen(app_path('/migrations/.data') , 'r'),
-        filesize(app_path('/migrations/.data')) + 1)
+        \Crystal\Utilities\File::read(app_path('/migrations/.data'))
     );
     if(isset($args[0])){
         if(strtolower($args[0]) == 'again'){
@@ -38,13 +37,8 @@ function cmd_run($args){
 ';
                 echo '---------------------------------';
 
-                $fdata = fopen(app_path('/migrations/.data') , 'r');
-                $fd_content = fread($fdata , filesize(app_path('/migrations/.data')) + 1);
-                $fd_content .= '
-' . $name;
-                $fdata = fopen(app_path('/migrations/.data') , 'w');
-                fwrite($fdata, $fd_content);
-                fclose($fdata);
+                \Crystal\Utilities\File::append(app_path('/migrations/.data'), '
+' . $name);
                 $some_thing_migrated = true;
             }
         }

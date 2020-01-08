@@ -95,3 +95,7 @@ function auth(){
 function db(){
     return new \Crystal\Database\DB;
 }
+
+function cfile(){
+    return new \Crystal\Utilities\File;
+}
