@@ -18,7 +18,7 @@ return [
     'public_path' => app::env('PUBLIC_PATH'),
 
     'database' => [
-        'use_db' => false,
+        'use_db' => true,
         'db' => 'db1',
         'connections' => [
             'db1' => [
