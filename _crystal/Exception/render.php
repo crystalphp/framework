@@ -2,6 +2,14 @@
 function make_exception_render($ex_name , $message , $file , $code_line=null){
 	$content = \Crystal\Utilities\File::read($file);
 	$lines = \Crystal\Utilities\Str::get_list_from_string($content , false);
+	$line_number_space = count($lines);
+	$line_number_space = (string) $line_number_space;
+	$line_number_space = strlen($line_number_space);
+	
+	$lns = ' ';
+	for($i = 0; $i < $line_number_space; $i++){
+		$lns .= ' ';
+	}
 ?>
 
 <style>
@@ -33,7 +41,7 @@ for($i = 0; $i < count($lines); $i++){
 		$line = '<div class="current-line" style="display: inline-block; background-color: rgb(150,100,100);">' . $line . '</div>';
 	}
 
-	$line = '<span style="padding: 0 5px; font-weight: bold;">'.($i+1).'</span>' . $line . '
+	$line = '<span style="padding: 0 5px; font-weight: bold;">'.($i+1).$lns.'</span>' . $line . '
 ';
 
 	echo $line;
