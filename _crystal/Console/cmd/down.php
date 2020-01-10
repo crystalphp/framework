@@ -11,8 +11,8 @@ function cmd_run($args){
 
 
 	for($i = 0; $i < count($lines); $i++){
-		if(substr($lines[$i], 0 , 12) == 'STATUS_TYPE='){
-			$lines[$i] = 'STATUS_TYPE=down';
+		if(substr($lines[$i], 0 , 11) == 'APP_STATUS='){
+			$lines[$i] = 'APP_STATUS=down';
 		}
 	}
 

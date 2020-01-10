@@ -11,7 +11,7 @@ function cmd_run($args){
 	$status = null;
 
 	for($i = 0; $i < count($lines); $i++){
-		if(substr($lines[$i], 0 , 12) == 'STATUS_TYPE='){
+		if(substr($lines[$i], 0 , 11) == 'APP_STATUS='){
 			$status = explode('=', $lines[$i]);
 			$status = $status[1];
 		}
