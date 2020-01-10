@@ -4,14 +4,12 @@ namespace Crystal\Utilities;
 
 class File{
 	public static function read($path , $max_byte=null){
-		if(is_file($path)){
-			if($max_byte == null){
-				$max_byte = filesize($path) + 1;
-			}
-
-			$f = fopen($path, 'r');
-			return fread($f , $max_byte);
+		if($max_byte === null){
+			$max_byte = filesize($path) + 1;
 		}
+
+		$f = fopen($path, 'r');
+		return fread($f , $max_byte);
 	}
 
 

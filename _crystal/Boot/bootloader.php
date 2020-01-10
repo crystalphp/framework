@@ -20,7 +20,7 @@ use Crystal\App\CViewCompiler;
 use Crystal\Http\Router;
 if( ! defined('JUST_BOOTLOADERS')){
 
-
+include_once libs('/Exception/include.php');
 
 include_once libs('/Boot/pluginsBoot.php');
 

@@ -16,10 +16,13 @@ class Str{
 		return substr($string, 0 , strlen($string) - $char_count);
 	}
 
-	public function get_list_from_string($string){
+	public function get_list_from_string($string , $clean=true){
+		if($clean){
 		$string = str_replace('
 
 ', '', $string);
+		}
+		
 		$list = explode('
 ', $string);
 

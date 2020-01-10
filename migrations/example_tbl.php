@@ -6,12 +6,12 @@ use Crystal\Database\Migrations\Migration;
 
 class example_tbl extends Migration{
     public function up(){
-        $this->create('tbl' , '
+        $this->create('example' , '
         	
 		');
     }
 
     public function down(){
-        $this->dropIfExist('tbl');
+        $this->dropIfExist('example');
     }
 }

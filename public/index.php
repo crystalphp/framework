@@ -1,6 +1,6 @@
 <?php
 
-$app_path = __DIR__ . '/..';
+$app_path = dirname(__DIR__ , 1);
 
 define('APP_PATH' , $app_path);
 define('PUBLIC_PATH', __DIR__);

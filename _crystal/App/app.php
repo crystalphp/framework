@@ -10,10 +10,25 @@ use Crystal\Utilities\KEVRender;
 class app{
 	public static function controller($action , $middlewares=[] , $params=[])
 	{
+		$tmp = $action;
 		$action = explode('@' , $action);
+
+		if(count($action) != 2){
+			throw new \Exceptions\InvalidRouteActionFormat([$tmp]);
+		}
+
 		Middleware::call_list($middlewares);
 		$action[0] = '\Controllers\\' . $action[0];
+		if( ! class_exists($action[0])){
+			throw new \Exceptions\ControllerNotFound([$action[0]]);
+		}
+
 		$controller_obj = new $action[0];
+
+		if( ! method_exists($controller_obj , $action[1])){
+			throw new \Exceptions\ControllerNotHaveFunction([$action[0] , $action[1]]);
+		}
+
 		$func_name = $action[1];
 		$req = new Request;
 		echo call_user_func_array([$controller_obj , $func_name], [$req , $params]);
