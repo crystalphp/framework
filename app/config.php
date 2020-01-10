@@ -33,4 +33,6 @@ return [
     'cookies_default_life_time' => 2592000,
 
 
+    'clean_views_output' => false,
+
 ];
