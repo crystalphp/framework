@@ -23,20 +23,19 @@ class AppEventListener{
     }
 
 
-    public function on_error_404($func=null){
-        static::on('on_error_404' , $func);
-    }
+    public static function __callStatic($name , $args){
+        if( ! isset(static::$$name)){
+            throw new \Exceptions\EventNotFound([$name]);
+        }
 
-    public function on_begin_request($func=null){
-        static::on('on_begin_request' , $func);
-    }
+        $func = isset($args[0]) ? $args[0] : null;
+        if($func !== null){
+            if( ! is_a($func, '\Closure')){
+                throw new \Exceptions\ArgumentError(["passed argument to AppEventListener should be Closure"]);
+            }
+        }
 
-    public function on_start($func=null){
-        static::on('on_start' , $func);
-    }
-
-    public function on_end_request($func=null){
-        static::on('on_end_request' , $func);
+        static::on($name , $func);
     }
 
 }

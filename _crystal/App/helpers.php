@@ -55,22 +55,6 @@ function redirect($to){
 
 
 
-function get_directory_tree($path , $files=[]){
-    $tmp = glob($path . '/*');
-    foreach($tmp as $t){
-        if(is_file($t)){
-            array_push($files, $t);
-        }else if(is_dir($t)){
-            array_push($files, $t);
-            $files = get_directory_tree($t , $files);
-        }
-    }
-
-    return $files;
-}
-
-
-
 function httpcode($code){
     return Response::httpcode($code);
 }
@@ -94,6 +78,10 @@ function auth(){
 
 function db(){
     return new \Crystal\Database\DB;
+}
+
+function chash(){
+    return new \Crystal\Utilities\Hash;
 }
 
 function cfile(){

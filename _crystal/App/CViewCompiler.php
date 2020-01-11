@@ -4,7 +4,7 @@ namespace Crystal\App;
 
 class CViewCompiler{
 	public static function compile_views(){
-    	$files = get_directory_tree(app_path('/views'));
+    	$files = \Crystal\Utilities\File::get_directory_tree(app_path('/views'));
     	$first_length = strlen(app_path('/views/'));
 
     	$fs = [];

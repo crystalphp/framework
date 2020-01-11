@@ -11,6 +11,7 @@ class BaseException extends \Exception{
 	protected $code_line;
 	protected $ex_name;
 
+
 	protected function handle($message , $file=null , $code_line=null){
 		$ex_name = static::class;
 		$ex_name = explode('\\', $ex_name);

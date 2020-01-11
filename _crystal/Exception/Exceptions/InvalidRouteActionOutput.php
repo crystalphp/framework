@@ -26,7 +26,7 @@ class InvalidRouteActionOutput extends BaseException{
 	function __toString(){
 		$res_type = get_class($this->output);
 		if($this->method !== null && $this->controller !== null){
-			$str_part = "method \"{$this->method}\" in controller \"{$this->controller}\"";
+			$str_part = "method \"{$this->method}\" in \"{$this->controller}\"";
 		}else{
 			$str_part = "Closure for route \"" . request()->path() . '"';
 		}

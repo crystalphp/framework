@@ -3,6 +3,7 @@
 function cmd_run($args){
     define('JUST_BOOTLOADERS' , true);
     $_SERVER['SERVER_NAME'] = 'localhost';
+    $_SERVER['SERVER_PORT'] = '8000';
     $_SERVER['REQUEST_URI'] = '/';
     $_SERVER['REQUEST_METHOD'] = 'get';
     

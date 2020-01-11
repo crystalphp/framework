@@ -16,7 +16,7 @@ class Controller{
 
 
 	public static function make_output($output){
-		if(is_string($output)){
+		if(is_string($output) || is_null($output)){
 			return $output;
 		}else{
 			if(method_exists($output, '__toString')){
