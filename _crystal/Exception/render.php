@@ -11,7 +11,7 @@ function make_exception_render($ex_name , $message , $file , $code_line=null){
 		$lns .= ' ';
 	}
 ?>
-
+<title><?= $message . ' : ' . $ex_name ?></title>
 <style>
 	*{
 		padding: 0;

@@ -27,7 +27,9 @@ class BaseException extends \Exception{
 
 
 	public function render(){
-		die(make_exception_render($this->ex_name , $this->message , $this->file , $this->code_line));
+		ob_start();
+		make_exception_render($this->ex_name , $this->message , $this->file , $this->code_line);
+		return ob_get_clean();
 	}
 
 
@@ -45,5 +47,10 @@ class BaseException extends \Exception{
 			$number += 1;
 		}
 		return $number;
+	}
+
+
+	public function message(){
+		return $this->__toString();
 	}
 }

@@ -14,4 +14,16 @@ class Controller{
 		}
 	}
 
+
+	public static function make_output($output){
+		if(is_string($output)){
+			return $output;
+		}else{
+			if(method_exists($output, '__toString')){
+				return $output->__toString();
+			}else{
+				throw new \Exceptions\InvalidRouteActionOutput([$output , null , null]);
+			}
+		}
+	}
 }

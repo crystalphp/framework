@@ -165,8 +165,8 @@ class Router
 
     if(is_string($method)){
         app::controller($method);
-    }else {
-        echo call_user_func_array($method, array($this->request));
+    }else{
+        echo \Crystal\Controllers\Controller::make_output(call_user_func_array($method, array($this->request)));
     }
 
     AppEventListener::on_end_request();
