@@ -11,7 +11,7 @@ class DB{
 	public static function connect($host, $user, $password, $db_name){
 		$con = new \mysqli($host, $user, $password, $db_name);
 		if($con->connect_errno){
-			throw new \Crystal\Exceptions\DatabaseConnectionError([$con->connect_errno]);
+			throw new \Crystal\Exceptions\DatabaseError([$con->connect_errno]);
 		}else{
 			static::$connection = $con;
 			AppEventListener::on_end_request(function(){
@@ -27,7 +27,12 @@ class DB{
 			$f = static::$on_listen;
 			$f($sql);
 		}
-		return mysqli_query(static::$connection , $sql);
+		$result = mysqli_query(static::$connection , $sql);
+		if($result === false){
+			throw new \Crystal\Exceptions\DatabaseError([static::$connection->error]);
+		}
+
+		return $result;
 	}
 
 	public static function close_connection(){

@@ -151,6 +151,13 @@ class Model{
 
 
 
+	public static function __callStatic($name , $args){
+		$q = static::q();
+		return call_user_func_array([$q , $name], $args);
+	}
+
+
+
 
 
 	public function hasMany($model , $fk=null){

@@ -4,7 +4,7 @@ namespace Crystal\Exceptions;
 
 use Crystal\Exceptions\BaseException;
 
-class DatabaseConnectionError extends BaseException{
+class DatabaseError extends BaseException{
 	protected $msg = null;
 	function __construct($data=[]){
 		$this->msg = $data[0];
