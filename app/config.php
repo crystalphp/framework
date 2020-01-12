@@ -1,7 +1,5 @@
 <?php
 
-use Crystal\App\app;
-
 return [
 
     'middlewares' => [
@@ -10,21 +8,21 @@ return [
         ],
     ],
 
-    'app_status' => app::env('APP_STATUS'),
-    'app_debug' => app::env('APP_DEBUG'),
+    'app_status' => env('APP_STATUS'),
+    'app_debug' => env('APP_DEBUG'),
 
-    'app_name' => app::env('APP_NAME'),
-    'app_url' => app::env('APP_URL'),
+    'app_name' => env('APP_NAME'),
+    'app_url' => env('APP_URL'),
 
     'database' => [
         'use_db' => false,
         'db' => 'db1',
         'connections' => [
             'db1' => [
-                'name' => app::env('DB_NAME'),
-                'host' => app::env('DB_HOST'),
-                'username' => app::env('DB_USERNAME'),
-                'password' => app::env('DB_PASSWORD'),
+                'name' => env('DB_NAME'),
+                'host' => env('DB_HOST'),
+                'username' => env('DB_USERNAME'),
+                'password' => env('DB_PASSWORD'),
             ],
         ],
     ],

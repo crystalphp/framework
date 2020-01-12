@@ -47,6 +47,7 @@ class app{
 
 	public static function get_config($key=null)
 	{
+		include_once libs('/App/helpers.php');
 		$configs = require app_path('/app/config.php');
 		if($key !== null){
 			return $configs[$key];
