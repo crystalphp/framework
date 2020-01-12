@@ -11,7 +11,7 @@ class DB{
 	public static function connect($host, $user, $password, $db_name){
 		$con = new \mysqli($host, $user, $password, $db_name);
 		if($con->connect_errno){
-			return $con->connect_error;
+			throw new \Crystal\Exceptions\DatabaseConnectionError([$con->connect_errno]);
 		}else{
 			static::$connection = $con;
 			AppEventListener::on_end_request(function(){

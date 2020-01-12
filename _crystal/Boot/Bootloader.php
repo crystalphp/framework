@@ -63,6 +63,18 @@ class Bootloader{
 			');
 		}
 
+
+		$db_conf = app::get_config('database');
+		if($db_conf['use_db']){
+			$db_conf = $db_conf['connections'][$db_conf['db']];
+			$db_host = $db_conf['host'];
+			$db_user = $db_conf['username'];
+			$db_pass = $db_conf['password'];
+			$db_name = $db_conf['name'];
+			\Crystal\Database\DB::connect($db_host , $db_user , $db_pass , $db_name);
+		}
+
+
 		session_start();
 		if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
 			$content = 'start_time='.CRYSTAL_START_TIME.';';
