@@ -16,9 +16,9 @@ function crystal_shutdown_handler(){
 
 register_shutdown_function('crystal_shutdown_handler');
 
-$ex_s = glob(libs('/Exception/Exceptions/*.php'));
-include_once libs('/Exception/BaseException.php');
-include_once libs('/Exception/render.php');
+$ex_s = glob(libs('/Exceptions/Exceptions/*.php'));
+include_once libs('/Exceptions/BaseException.php');
+include_once libs('/Exceptions/render.php');
 
 
 

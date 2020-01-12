@@ -25,13 +25,13 @@ class AppEventListener{
 
     public static function __callStatic($name , $args){
         if( ! isset(static::$$name)){
-            throw new \Exceptions\EventNotFound([$name]);
+            throw new \Crystal\Exceptions\EventNotFound([$name]);
         }
 
         $func = isset($args[0]) ? $args[0] : null;
         if($func !== null){
             if( ! is_a($func, '\Closure')){
-                throw new \Exceptions\ArgumentError(["passed argument to AppEventListener should be Closure"]);
+                throw new \Crystal\Exceptions\ArgumentError(["passed argument to AppEventListener should be Closure"]);
             }
         }
 

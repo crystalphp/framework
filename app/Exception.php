@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Exceptions\BaseException;
+use Crystal\Exceptions\BaseException;
 
 class ExceptionHandler{
 	public function report(BaseException $ex){

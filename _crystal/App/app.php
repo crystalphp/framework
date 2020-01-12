@@ -17,25 +17,25 @@ class app{
     	$controller_name = $controller_name[count($controller_name) - 1];
 
 		if(count($action) != 2){
-			throw new \Exceptions\InvalidRouteActionFormat([$tmp]);
+			throw new \Crystal\Exceptions\InvalidRouteActionFormat([$tmp]);
 		}
 
 		Middleware::call_list($middlewares);
 		$action[0] = '\Controllers\\' . $action[0];
 		if( ! class_exists($action[0])){
-			throw new \Exceptions\ControllerNotFound([$action[0]]);
+			throw new \Crystal\Exceptions\ControllerNotFound([$action[0]]);
 		}
 
 		$controller_obj = new $action[0];
 
 		if( ! method_exists($controller_obj , $action[1])){
-			throw new \Exceptions\ControllerNotHaveFunction([$action[0] , $action[1]]);
+			throw new \Crystal\Exceptions\ControllerNotHaveFunction([$action[0] , $action[1]]);
 		}
 
 		$method_reflection = new \ReflectionMethod($controller_obj, $action[1]);
     	if( ! $method_reflection->isPublic()){
     		
-    		throw new \Exceptions\ControllerMethodIsNotPublic([$controller_name , $action[1]]);
+    		throw new \Crystal\Exceptions\ControllerMethodIsNotPublic([$controller_name , $action[1]]);
     		
     	}
 
@@ -60,7 +60,7 @@ class app{
 		$path = app_path('/storage/viewcache/' . $name . '.cv.php');
 
 		if( ! is_file($path)){
-			throw new \Exceptions\ViewNotFound([$name]);
+			throw new \Crystal\Exceptions\ViewNotFound([$name]);
 		}
 
 		ob_start();

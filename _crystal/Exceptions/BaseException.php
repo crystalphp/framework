@@ -1,6 +1,6 @@
 <?php
 
-namespace Exceptions;
+namespace Crystal\Exceptions;
 
 use Crystal\Utilities\File;
 use Crystal\Utilities\Str;

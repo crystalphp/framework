@@ -1,8 +1,8 @@
 <?php
 
-namespace Exceptions;
+namespace Crystal\Exceptions;
 
-use Exceptions\BaseException;
+use Crystal\Exceptions\BaseException;
 
 class ViewNotFound extends BaseException{
 	protected $view;

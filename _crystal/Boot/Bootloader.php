@@ -33,7 +33,7 @@ class Bootloader{
 	
 	if( ! defined('JUST_BOOTLOADERS')){
 
-		include_once libs('/Exception/include.php');
+		include_once libs('/Exceptions/include.php');
 		include_once libs('/App/helpers.php');
 		include_once libs('/Boot/pluginsBoot.php');
 		include_once libs('/Boot/jobsBoot.php');

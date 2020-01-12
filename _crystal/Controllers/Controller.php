@@ -22,7 +22,7 @@ class Controller{
 			if(method_exists($output, '__toString')){
 				return $output->__toString();
 			}else{
-				throw new \Exceptions\InvalidRouteActionOutput([$output , null , null]);
+				throw new \Crystal\Exceptions\InvalidRouteActionOutput([$output , null , null]);
 			}
 		}
 	}
