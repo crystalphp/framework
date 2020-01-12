@@ -6,6 +6,7 @@ use Crystal\App\app;
 use Crystal\App\AppEventListener;
 use Crystal\App\CViewCompiler;
 use Crystal\Http\Router;
+use Crystal\Forms\Csrf;
 
 class Bootloader{
 	public static function do_cmd($cmd){
@@ -82,6 +83,10 @@ class Bootloader{
 			AppEventListener::on_start();
 		}
 
+		if( ! isset($_SESSION['csrf_token'])){
+			$_SESSION['csrf_token'] = \Crystal\Forms\Csrf::generate();
+		}
+
 		AppEventListener::on_begin_request();
 
 		$router = new Router;
@@ -92,6 +97,16 @@ class Bootloader{
 			static::do_cmd('mix-resources');
 			CViewCompiler::compile_views();
 		}
+
+
+
+		if(request()->requestMethod() == 'POST'){
+			if( ! Csrf::validate(request()->post('csrf_token'))){
+				die(httpcode(419));
+			}
+		}
+
+
 
 		include_once app_path('/app/routes.php');
 	}

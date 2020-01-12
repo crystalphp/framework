@@ -14,7 +14,7 @@ class Request implements IRequest
 
     public function requestMethod()
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
     public function path()

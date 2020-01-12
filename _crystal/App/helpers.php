@@ -3,6 +3,7 @@
 use Crystal\App\app;
 use Crystal\Http\Response;
 use Crystal\Http\Request;
+use Crystal\Utilities\Session;
 
 function form_render($str , $attributes=''){
     $str = explode('@', $str);
@@ -36,6 +37,10 @@ function public_path($path=null){
     return PUBLIC_PATH . $path;
 }
 
+function get_csrf_token(){
+    $csrf = Session::get('csrf_token');
+    return '<input type="hidden" name="csrf_token" value="'.$csrf.'" />';
+}
 
 
 

@@ -33,7 +33,10 @@ class Form{
 		return $render_html;
 	}
 	
-	public static function isValid(Request $r , $method='post' , $run_onsubmit=true){
+	public static function isValid(Request $r=null , $method='post' , $run_onsubmit=true){
+        if($r === null){
+            $r = request();
+        }
 		$form = static::make(new Formprint);
 		$m = $method;
 		$result = true;
@@ -149,8 +152,11 @@ class Form{
         return static::$error_message;
 	}
 
-    public static function submited(Request $r, $method = 'post')
+    public static function submited(Request $r=null, $method = 'post')
     {
+        if($r === null){
+            $r = request();
+        }
         $result = true;
         $form = static::make(new Formprint);
         foreach($form->fields as $f){
@@ -176,7 +182,10 @@ class Form{
         return $result;
 	}
 
-    public static function submited_and_is_valid(Request $r , $method="post" , $call_onsubmit=true){
+    public static function submited_and_is_valid(Request $r=null , $method="post" , $call_onsubmit=true){
+        if($r === null){
+            $r = request();
+        }
         if(static::submited($r , $method)){
             if(static::isValid($r , $method , $call_onsubmit)){
                 return true;
@@ -187,7 +196,10 @@ class Form{
     }
 
 
-	public static function getData(Request $r , $method="post"){
+	public static function getData(Request $r=null , $method="post"){
+        if($r === null){
+            $r = request();
+        }
         $form = static::make(new Formprint);
         $data = [];
         foreach($form->fields as $f){

@@ -79,6 +79,8 @@ class CViewCompiler{
         $content = str_replace('<@', '<?php', $content);
         $content = str_replace('@>', '?>', $content);
 
+        $content = str_replace('@csrf', '<?= get_csrf_token() ?>', $content);
+
 
 
 
