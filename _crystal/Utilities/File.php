@@ -60,7 +60,7 @@ class File{
 	}
 
 
-	public function get_directory_tree($path , $files=[]){
+	public static function get_directory_tree($path , $files=[]){
     	$tmp = glob($path . '/*');
     	foreach($tmp as $t){
         	if(is_file($t)){

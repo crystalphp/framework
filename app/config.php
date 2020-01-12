@@ -15,7 +15,6 @@ return [
 
     'app_name' => app::env('APP_NAME'),
     'app_url' => app::env('APP_URL'),
-    'public_path' => app::env('PUBLIC_PATH'),
 
     'database' => [
         'use_db' => false,

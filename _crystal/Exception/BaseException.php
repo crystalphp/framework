@@ -11,6 +11,8 @@ class BaseException extends \Exception{
 	protected $code_line;
 	protected $ex_name;
 
+	private $render_output_cache = null;
+
 
 	protected function handle($message , $file=null , $code_line=null){
 		$ex_name = static::class;
@@ -23,14 +25,39 @@ class BaseException extends \Exception{
 		$this->code_line = $code_line;
 
 		$ex_handler = new \App\ExceptionHandler;
-		die($ex_handler->handle($this));
+		echo $ex_handler->handle($this);
+		$ex_handler->report($this);
+		die();
 	}
 
 
 	public function render(){
 		ob_start();
 		make_exception_render($this->ex_name , $this->message , $this->file , $this->code_line);
-		return ob_get_clean();
+		$this->render_output_cache = ob_get_clean();
+		return $this->render_output_cache;
+	}
+
+
+	public function report(\Closure $func=null){
+		$do = true;
+		if(is_a($func, '\Closure')){
+			$do = call_user_func_array($func, [$this]);
+		}
+
+		if( ! $do){
+			return;
+		}
+
+
+		// report the exception: create that as file in storage/error_reports
+		$name = date('Y-m-d') . '__' . time() . '__' . $this->ex_name;
+
+		if($this->render_output_cache === null){
+			$this->render_output_cache = $this->render();
+		}
+
+		File::create(app_path('/storage/error-reports/' . $name . '.html') , $this->render_output_cache);
 	}
 
 

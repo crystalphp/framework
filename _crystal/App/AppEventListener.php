@@ -15,7 +15,7 @@ class AppEventListener{
     private static function on($name , Closure $func=null){
         if($func === null){
             foreach(static::$$name as $tmp){
-                $tmp(new Request);
+                echo $tmp(new Request);
             }
         }else{
             array_push(static::$$name , $func);

@@ -69,18 +69,18 @@ class Response{
         511 => 'Network Authentication Required',
 	];
 
-	public function make($content , $code=200){
+	public static function make($content , $code=200){
 		http_response_code($code);
 		return $content;
 	}
 
-	public function view($view , $code=200){
+	public static function view($view , $code=200){
 		http_response_code($code);
 		return view($view);
 	}
 
 
-	public function httpcode($code){
+	public static function httpcode($code){
 		http_response_code($code);
 		$msg = $code . ' | ' . static::$httpcodes_default_response[$code];
 		$res = "
@@ -96,7 +96,7 @@ class Response{
 	}
 
 
-	public function download($path , $file_client_name=null){
+	public static function download($path , $file_client_name=null){
 		if($file_client_name == null){
 			$file_client_name = basename($path);
 		}
@@ -107,7 +107,7 @@ class Response{
 
 
 
-	public function file($path , $file_client_name=null){
+	public static function file($path , $file_client_name=null){
 		$type = mime_content_type($path);
 		header('Content-type: ' . $type);
 		if($file_client_name != null){

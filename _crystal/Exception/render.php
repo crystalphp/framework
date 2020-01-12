@@ -26,6 +26,16 @@ function make_exception_render($ex_name , $message , $file , $code_line=null){
 		font-family: mono-space;
 		src: url('https://www.fontsquirrel.com/fonts/download/Bitstream-Vera-Sans-Mono');
 	}
+
+	.current-line{
+		display: inline-block;
+		background-color: rgb(150,100,100);
+	}
+
+	.line-num{
+		padding: 0 5px;
+		font-weight: bold;
+	}
 </style>
 
 <header style="background-color: rgb(200,100,200); padding: 30px;">
@@ -38,10 +48,10 @@ function make_exception_render($ex_name , $message , $file , $code_line=null){
 for($i = 0; $i < count($lines); $i++){
 	$line = htmlspecialchars($lines[$i]);
 	if($i == $code_line){
-		$line = '<div class="current-line" style="display: inline-block; background-color: rgb(150,100,100);">' . $line . '</div>';
+		$line = '<div class="current-line">' . $line . '</div>';
 	}
 
-	$line = '<span style="padding: 0 5px; font-weight: bold;">'.($i+1).$lns.'</span>' . $line . '
+	$line = '<span class="line-num">'.($i+1).$lns.'</span>' . $line . '
 ';
 
 	echo $line;

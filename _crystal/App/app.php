@@ -75,7 +75,7 @@ class app{
 		return $content;
 	}
 
-	public function env($key , $default=null){
+	public static function env($key , $default=null){
 		$result = KEVRender::render_by_file(app_path('/.env'));
 		if(isset($result[$key])){
 			return $result[$key];

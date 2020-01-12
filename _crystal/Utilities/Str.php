@@ -3,7 +3,7 @@
 namespace Crystal\Utilities;
 
 class Str{
-	public function make_string_from_array($array){
+	public static function make_string_from_array($array){
 		$str = '';
 		foreach($array as $v){
 			$str .= $v . ', ';
@@ -12,11 +12,11 @@ class Str{
 		return $str;
 	}
 
-	public function remove_last_chars($string , $char_count){
+	public static function remove_last_chars($string , $char_count){
 		return substr($string, 0 , strlen($string) - $char_count);
 	}
 
-	public function get_list_from_string($string , $clean=true){
+	public static function get_list_from_string($string , $clean=true){
 		if($clean){
 		$string = str_replace('
 

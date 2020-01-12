@@ -4,7 +4,7 @@ namespace Crystal\Utilities;
 
 class KEVRender{
 
-	public function render_by_content($content){
+	public static function render_by_content($content){
 		$tmp = explode('
 ', $content);
 
@@ -20,7 +20,7 @@ class KEVRender{
 		return $data;
 	}
 
-	public function render_by_file($path){
+	public static function render_by_file($path){
 		$f = fopen($path, 'r');
 		$content = fread($f , filesize($path) + 1);
 		return static::render_by_content($content);

@@ -3,7 +3,7 @@
 namespace Crystal\Utilities;
 
 class Hash{
-	function __callStatic($name , $args){
+	static function __callStatic($name , $args){
 		if( ! in_array($name , hash_algos())){
 			throw new \Exceptions\ArgumentError(["the hash algo \"{$name}\" Not found"]);
 		}

@@ -15,6 +15,6 @@ class ViewNotFound extends BaseException{
 	}
 
 	function __toString(){
-		return "view \"{$this->view}\" not Found. if the APP_DEBUG in .env file equals false, try \"php crystal compile-views\" in the terminal may fix this";
+		return "view \"{$this->view}\" not Found. if view name is correct and the APP_DEBUG in .env file equals false, try \"php crystal compile-views\" in the terminal may fix this";
 	}
 }
