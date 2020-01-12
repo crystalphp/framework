@@ -42,7 +42,7 @@ class app{
 		$func_name = $action[1];
 		$req = new Request;
 		$res = call_user_func_array([$controller_obj , $func_name], [$req , $params]);
-		echo \Crystal\Controller\Controller::make_output($res);
+		echo \Crystal\Controllers\Controller::make_output($res);
 	}
 
 	public static function get_config($key=null)

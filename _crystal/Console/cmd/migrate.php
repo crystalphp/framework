@@ -7,7 +7,7 @@ function cmd_run($args){
     $_SERVER['REQUEST_URI'] = '/';
     $_SERVER['REQUEST_METHOD'] = 'get';
     
-    include_once libs('/Boot/bootloader.php');
+    include_once libs('/init.php');
     
     $migrations = glob(app_path('/migrations/*.php'));
     $migrated_list = \Crystal\Utilities\Str::get_list_from_string(

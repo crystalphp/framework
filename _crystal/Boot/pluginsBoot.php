@@ -23,11 +23,11 @@ function load_once_plugin($plugname){
 
 
 
-$plugins = glob(app_path('/plugins/*'));
-foreach($plugins as $plugin){
-	$pn_tmp = basename($plugin);
-	load_once_plugin($pn_tmp);
-}
+//$plugins = glob(app_path('/plugins/*'));
+//foreach($plugins as $plugin){
+//	$pn_tmp = basename($plugin);
+//	load_once_plugin($pn_tmp);
+//}
 
 
 

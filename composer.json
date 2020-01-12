@@ -1,0 +1,17 @@
+{
+    "name": "parsampsh/crystal",
+    "description": "crystal is a php mvc framework",
+    "type": "framework",
+    "authors": [
+        {
+            "name": "parsa mpsh",
+            "email": "parsa84sh1384@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "Crystal\\" : "_crystal/"
+        }
+    }
+}
