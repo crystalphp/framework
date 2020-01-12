@@ -52,6 +52,10 @@ class Bootloader{
 			static::include_files($files);
 		}
 
+		if(app::get_config('hide_php_version_header') === true){
+			header('X-Powered-By: ');
+		}
+
 		$app_status = app::get_config('app_status');
 		if($app_status == 'down' || $app_status != 'up'){
 			die('

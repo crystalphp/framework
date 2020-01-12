@@ -32,4 +32,7 @@ return [
 
     'clean_views_output' => false,
 
+
+    'hide_php_version_header' => false,
+
 ];
