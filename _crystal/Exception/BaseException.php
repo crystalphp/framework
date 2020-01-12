@@ -57,6 +57,10 @@ class BaseException extends \Exception{
 			$this->render_output_cache = $this->render();
 		}
 
+		if( ! is_dir(app_path('/storage/error-reports/'))){
+			mkdir(app_path('/storage/error-reports/'));
+		}
+
 		File::create(app_path('/storage/error-reports/' . $name . '.html') , $this->render_output_cache);
 	}
 

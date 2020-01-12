@@ -27,6 +27,10 @@ class Bootloader{
 
 	public static function boot(){
 	
+	if( ! is_dir(app_path('/storage'))){
+		mkdir(app_path('/storage'));
+	}
+	
 	if( ! defined('JUST_BOOTLOADERS')){
 
 		include_once libs('/Exception/include.php');

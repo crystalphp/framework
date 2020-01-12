@@ -6,6 +6,10 @@ class CViewCompiler{
 	public static function compile_views(){
     	$files = \Crystal\Utilities\File::get_directory_tree(app_path('/views'));
     	$first_length = strlen(app_path('/views/'));
+		
+		if( ! is_dir(app_path('/storage/viewcache/'))){
+			mkdir(app_path('/storage/viewcache/'));
+		}
 
     	$fs = [];
     	$dirs = [];
