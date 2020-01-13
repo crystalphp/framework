@@ -86,7 +86,7 @@ class app{
 	}
 }
 
-define('APP_URL' , str_replace('{port}' , $_SERVER['SERVER_PORT'] , str_replace('{servername}' , $_SERVER['SERVER_NAME'] , app::get_config('app_url'))));
+define('APP_URL' , str_replace('{servername}' , $_SERVER['HTTP_HOST'] , app::get_config('app_url')));
 
 
 

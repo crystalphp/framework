@@ -1,14 +1,6 @@
 <?php
 
-function cmd_run($args){
-    define('JUST_BOOTLOADERS' , true);
-    $_SERVER['SERVER_NAME'] = 'localhost';
-    $_SERVER['SERVER_PORT'] = '8000';
-    $_SERVER['REQUEST_URI'] = '/';
-    $_SERVER['REQUEST_METHOD'] = 'get';
-    
-    include_once libs('/init.php');
-    
+function cmd_run($args){    
     $migrations = glob(app_path('/migrations/*.php'));
     $migrated_list = \Crystal\Utilities\Str::get_list_from_string(
         \Crystal\Utilities\File::read(app_path('/migrations/.data'))

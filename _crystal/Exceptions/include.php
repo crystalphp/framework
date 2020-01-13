@@ -3,7 +3,7 @@
 ini_set('display_errors' , '0');
 
 function crystal_error_handler($errno , $errstr , $file , $line){
-	echo make_exception_render('Error' , $errstr , $file , $line - 1);
+	echo make_exception_render('Error['.$errno.']' , $errstr , $file , $line - 1);
 	die();
 }
 

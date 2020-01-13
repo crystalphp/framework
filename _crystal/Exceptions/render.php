@@ -1,5 +1,12 @@
 <?php
 function make_exception_render($ex_name , $message , $file , $code_line=null){
+	if($_SERVER['REQUEST_METHOD'] == 'console'){
+		return $ex_name . ':
+' . $message . '
+' . $file . ':' . $code_line . '
+';
+	}
+
 	$content = \Crystal\Utilities\File::read($file);
 	$lines = \Crystal\Utilities\Str::get_list_from_string($content , false);
 	$line_number_space = count($lines);
@@ -36,9 +43,28 @@ function make_exception_render($ex_name , $message , $file , $code_line=null){
 		padding: 0 5px;
 		font-weight: bold;
 	}
+
+	header{
+		position: relative;
+		background-color: rgb(180,90,90);
+		padding: 30px;
+	}
+
+	header a{
+		text-decoration: none;
+		color: rgb(18,9,9);
+		position: absolute;
+		top: 10px;
+		right:10px;
+	}
+
+	header a:hover{
+		color: rgb(64,32,32);
+	}
 </style>
 
-<header style="background-color: rgb(200,100,200); padding: 30px;">
+<header>
+	<a href="http://crystalphp.com">crystalphp.com</a>
 	<h2><?= $ex_name ?></h2>
 	<div><?= $message ?></div>
 	<div>in <?= $file ?>:<?= $code_line + 1 ?></div>

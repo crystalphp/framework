@@ -32,14 +32,14 @@ class Bootloader{
 		mkdir(app_path('/storage'));
 	}
 	
+	include_once libs('/Exceptions/include.php');
+		
 	if( ! defined('JUST_BOOTLOADERS')){
-
-		include_once libs('/Exceptions/include.php');
+	
 		include_once libs('/App/helpers.php');
-		include_once libs('/Boot/pluginsBoot.php');
 		include_once libs('/Boot/jobsBoot.php');
 		include_once app_path('/app/events.php');
-		include_once app_path('/app/Exception.php');
+		include_once app_path('/app/ExceptionHandler.php');
 		include_once libs('/Http/include.php');
 
 		$dirs = [
