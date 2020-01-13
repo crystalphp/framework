@@ -11,12 +11,12 @@ function form_render($str , $attributes=''){
     return $frm::render($str[1] , $attributes);
 }
 
-function view($name, $data = null){
-    return app::view($name , $data);
+function view($name, $data = null , $include=false){
+    return app::view($name , $data , $include);
 }
 
 function vu($name , $data=null){
-    return view($name , $data);
+    return view($name , $data , true);
 }
 
 function url($url=''){
