@@ -55,7 +55,7 @@ class app{
 		return $configs;
 	}
 
-	public static function view($name, $data = null)
+	public static function view($name, $data = null, $include=false)
 	{
 		$path = app_path('/storage/viewcache/' . $name . '.cv.php');
 
@@ -63,6 +63,11 @@ class app{
 			throw new \Crystal\Exceptions\ViewNotFound([$name]);
 		}
 
+		if($include){
+			include $path;
+			return '';
+		}
+		
 		ob_start();
 		include $path;
 		$content = ob_get_clean();
