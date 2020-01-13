@@ -42,7 +42,6 @@ class Bootloader{
 		$db_pass = $db_conf['password'];
 		$db_name = $db_conf['name'];
 		\Crystal\Database\DB::connect($db_host , $db_user , $db_pass , $db_name);
-		echo 'sfdfdfdf';
 	}
 
 	if( ! defined('JUST_BOOTLOADERS')){

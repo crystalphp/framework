@@ -31,8 +31,14 @@ class Router
   }
 
   private function route_is_sync($route , $uri){
-    $route_d = explode('/', $route);
-    $uri_d = explode('/', $uri);
+    if($route[0] == '/'){
+      $route = substr($route, 1);
+    }
+    if($uri[0] == '/'){
+      $uri = substr($uri, 1);
+    }
+    $route_d = explode('/', $this->formatRoute($route));
+    $uri_d = explode('/', $this->formatRoute($uri));
     if(count($route_d) != count($uri_d)){
       return false;
     }
@@ -41,7 +47,7 @@ class Router
 
     for($i = 0; $i < count($route_d); $i++){
         if($route_d[$i][0] == '{'){
-          $params[substr($route_d[$i], 1 , strlen($route_d) - 1)] = $uri_d[$i];
+          $params[substr($route_d[$i], 1 , strlen($route_d[$i]) - 2)] = $uri_d[$i];
         }else{
             if($route_d[$i] != $uri_d[$i]){
               return false;
