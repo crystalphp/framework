@@ -30,7 +30,7 @@
 			<li><a href="http://crystalphp.com">Crystal</a></li>
 			<li><a href="http://blog.crystalphp.com">Blog</a></li>
 			<li><a href="http://forums.crystalphp.com">Forums</a></li>
-			<li><a href="http://crystalphp.com/docs">Documentations</a></li>
+			<li><a href="http://crystalphp.com/docs">Documentation</a></li>
 			<li><a href="http://tutorials.crystalphp.com">Tutorials</a></li>
 		</ul>
 	</center>
