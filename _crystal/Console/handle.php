@@ -8,7 +8,7 @@ $_SERVER['HTTP_HOST'] = 'localhost';
 define('JUST_BOOTLOADERS' , true);
 
 include app_path('/vendor/autoload.php');
-include libs('/Exceptions/include.php');
+\Crystal\Boot\Bootloader::boot();
 
 function cmd_index(){
 	echo 'MIT License

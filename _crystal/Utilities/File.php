@@ -67,7 +67,7 @@ class File{
 	            array_push($files, $t);
         	}else if(is_dir($t)){
             	array_push($files, $t);
-	            $files = get_directory_tree($t , $files);
+	            $files = static::get_directory_tree($t , $files);
         	}
 	    }
 
