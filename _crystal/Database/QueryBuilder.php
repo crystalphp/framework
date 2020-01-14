@@ -42,7 +42,13 @@ class QueryBuilder{
 		if($this->wheres != []){
 			array_push($this->wheres , 'and');
 		}
-		array_push($this->wheres , $key . $operator . '"' . addslashes($value) . '"');
+		if($value === null){
+			$value = 'NULL';
+			$operator = ' is ';
+		}else{
+			$value = '"' . addslashes($value) . '"';
+		}
+		array_push($this->wheres , $key . $operator . $value);
 
 		return $this;
 	}
