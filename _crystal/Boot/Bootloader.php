@@ -10,8 +10,12 @@ use Crystal\Forms\Csrf;
 
 class Bootloader{
 	public static function do_cmd($cmd){
-		include_once libs('/Console/cmd/'.$cmd.'.php');
-		cmd_run([]);
+		include_once libs('/Console/Cmd/'.$cmd.'.php');
+		$class_name = '\Crystal\Console\Cmd\\' . str_replace('-' , '_' , $cmd);
+		$obj = new $class_name;
+		echo $obj->handle([]);
+		echo '
+';
 	}
 
 

@@ -1,0 +1,84 @@
+<?php
+
+namespace Crystal\Console;
+
+class Handler{
+    public static function handle($argv){
+        $args = static::rm_first_arg($argv);
+
+
+        if(!isset($args[0])){
+            echo static::cmd_index();
+            die('
+');
+        }
+
+
+        $cmd = $args[0];
+        $cmd_class = str_replace('-' , '_' , $cmd);
+        $cmd_path = libs('/Console/Cmd/' . $cmd . '.php');
+        if( ! is_file($cmd_path)){
+            echo static::cmd_not_found($args);
+            die('
+');
+        }
+
+        include_once $cmd_path;
+
+        $cmd_class = '\Crystal\Console\Cmd\\' . $cmd;
+        $cmd_obj = new $cmd_class;
+
+        echo $cmd_obj->handle(static::rm_first_arg($args));
+
+
+        die('
+');
+    }
+
+
+
+    private static function cmd_index(){
+        return 'MIT License
+    
+Copyright (c) 2020 parsa mpsh <parsa84sh1384@gmail.com> as <crystalphp.com>
+    
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+    
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.';
+    }
+
+
+
+
+
+
+
+    private static function cmd_not_found($inserted_args){
+        return 'Crystal: Command "'.$inserted_args[0].'" Not Found';
+    }
+
+
+
+
+    private static function rm_first_arg($a){
+        $args = [];
+        for ($i=1; $i < count($a); $i++) { 
+            array_push($args, $a[$i]);
+        }
+        return $args;
+    }
+}
