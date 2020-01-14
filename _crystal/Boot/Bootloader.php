@@ -9,7 +9,7 @@ use Crystal\Http\Router;
 use Crystal\Forms\Csrf;
 
 class Bootloader{
-	public static function do_cmd($cmd){
+	private static function do_cmd($cmd){
 		include_once libs('/Console/Cmd/'.$cmd.'.php');
 		$class_name = '\Crystal\Console\Cmd\\' . str_replace('-' , '_' , $cmd);
 		$obj = new $class_name;
@@ -19,11 +19,21 @@ class Bootloader{
 	}
 
 
-	public static function include_files($files){
+	private static function include_files($files){
 		foreach($files as $file){
 			if(is_file($file)){
 				include_once $file;
 			}
+		}
+	}
+
+
+	private static function jobs_boot(){
+		$jobs = glob(app_path('/jobs/*.php'));
+		foreach($jobs as $job){
+    		if(is_file($job)){
+        		include_once $job;
+    		}
 		}
 	}
 
@@ -51,7 +61,9 @@ class Bootloader{
 	if( ! defined('JUST_BOOTLOADERS')){
 	
 		include_once libs('/App/helpers.php');
-		include_once libs('/Boot/jobsBoot.php');
+		
+		static::jobs_boot();
+
 		include_once app_path('/app/events.php');
 		include_once app_path('/app/ExceptionHandler.php');
 		include_once libs('/Http/include.php');
