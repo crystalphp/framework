@@ -44,7 +44,11 @@ class QueryBuilder{
 		}
 		if($value === null){
 			$value = 'NULL';
-			$operator = ' is ';
+			if($operator == '='){
+				$operator = ' is ';
+			}else if($operator == '<>'){
+				$operator = ' is not ';
+			}
 		}else{
 			$value = '"' . addslashes($value) . '"';
 		}
