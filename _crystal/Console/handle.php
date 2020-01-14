@@ -1,5 +1,12 @@
 <?php
 
+function app_path($path=null){
+	return APP_PATH . $path;
+}
+function libs($path){
+	return APP_PATH . '/_crystal' . $path;
+}
+
 $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '8000';
 $_SERVER['REQUEST_URI'] = '/';
