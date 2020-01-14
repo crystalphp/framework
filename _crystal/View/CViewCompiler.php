@@ -1,6 +1,9 @@
 <?php
 
-namespace Crystal\App;
+namespace Crystal\View;
+
+use Crystal\App\app;
+use Crystal\Utilities\Hash;
 
 class CViewCompiler{
 	public static function compile_views(){
@@ -28,7 +31,8 @@ class CViewCompiler{
 
 	private static function compile_once_view($name){
 		$content = fread(fopen(app_path('/views/' . $name) , 'r') , filesize(app_path('/views/' . $name)) + 1);
-    	$tmp_name = str_replace('/', '.', $name);
+		$tmp_name = str_replace('/', '.', $name);
+		$tmp_name = Hash::sha256($tmp_name) . '.php';
     	$content = static::format_content($content);
     	$target = fopen(app_path('/storage/viewcache/' . $tmp_name), 'w');
     	fwrite($target, $content);

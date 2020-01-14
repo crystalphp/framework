@@ -4,6 +4,7 @@ use Crystal\App\app;
 use Crystal\Http\Response;
 use Crystal\Http\Request;
 use Crystal\Utilities\Session;
+use Crystal\View\View;
 
 function form_render($str , $attributes=''){
     $str = explode('@', $str);
@@ -12,7 +13,7 @@ function form_render($str , $attributes=''){
 }
 
 function view($name, $data = null , $include=false){
-    return app::view($name , $data , $include);
+    return View::make($name , $data , $include);
 }
 
 function vu($name , $data=null){

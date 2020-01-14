@@ -15,7 +15,7 @@ class start{
 		
 		
 		echo 'crystal server started on http://localhost:' . $port . '
-		';
+';
 		if(false){ // check is windows os
 		
 		}else{

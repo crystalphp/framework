@@ -4,7 +4,7 @@ namespace Crystal\Boot;
 
 use Crystal\App\app;
 use Crystal\App\AppEventListener;
-use Crystal\App\CViewCompiler;
+use Crystal\View\CViewCompiler;
 use Crystal\Http\Router;
 use Crystal\Forms\Csrf;
 

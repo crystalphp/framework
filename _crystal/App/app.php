@@ -55,32 +55,6 @@ class app{
 		return $configs;
 	}
 
-	public static function view($name, $data = null, $include=false)
-	{
-		$path = app_path('/storage/viewcache/' . $name . '.cv.php');
-
-		if( ! is_file($path)){
-			throw new \Crystal\Exceptions\ViewNotFound([$name]);
-		}
-
-		if($include){
-			include $path;
-			return '';
-		}
-		
-		ob_start();
-		include $path;
-		$content = ob_get_clean();
-
-		if(app::get_config('clean_views_output') === true){
-			$content = str_replace('
-', '', $content);
-			$content = str_replace('	', '', $content);
-		}
-
-		return $content;
-	}
-
 	public static function env($key , $default=null){
 		$result = KEVRender::render_by_file(app_path('/.env'));
 		if(isset($result[$key])){
