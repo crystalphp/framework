@@ -56,6 +56,13 @@ class Bootloader{
 		include_once app_path('/app/ExceptionHandler.php');
 		include_once libs('/Http/include.php');
 
+		$aliases = require libs('/Boot/set_aliases.php');
+		foreach($aliases as $key => $value){
+			if( ! class_exists($value)){
+				class_alias($key , $value);
+			}
+		}
+
 		$dirs = [
 			'controllers',
 			'forms',
