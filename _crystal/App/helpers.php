@@ -12,11 +12,11 @@ function form_render($str , $attributes=''){
     return $frm::render($str[1] , $attributes);
 }
 
-function view($name, $data = null , $include=false){
+function view($name, $data = [] , $include=false){
     return View::make($name , $data , $include);
 }
 
-function vu($name , $data=null){
+function vu($name , $data=[]){
     return view($name , $data , true);
 }
 
