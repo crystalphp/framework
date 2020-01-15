@@ -50,9 +50,9 @@ class CViewCompiler{
         $content = str_replace(')@', ') ?>', $content);
         $content = str_replace('@extends(', '<?php vu(', $content);
 
-		$content = str_replace('@content', '<?php function vu_content($data){ ?>', $content);
-		$content = str_replace('@endcontent', '<?php } ?>', $content);
-		$content = str_replace('@rendercontent', '<?php vu_content($data); ?>', $content);
+		$content = str_replace('@section(', '<?php \Crystal\View\View::section(', $content);
+		$content = str_replace('@endsection', '<?php \Crystal\View\View::endsection() ?>', $content);
+		$content = str_replace('@rendersection(', '<?= \Crystal\View\View::getsection(', $content);
 
         $content = str_replace('@foreach(', '<?php foreach(', $content);
         $content = str_replace('@endforeach', '<?php endforeach; ?>', $content);
