@@ -10,15 +10,6 @@ class Cookie{
 			$time = app::get_config('cookies_default_life_time');
 		}
 
-		if(isset(app::get_config()['encryptor_class'])){
-			if(app::get_config()['encryptor_class'] != null){
-				$tmp_obj = app::get_config('encryptor_class');
-
-				$func = app::get_config()['encryptor_class_func'];
-				$value = $tmp_obj->$func($value);
-			}
-		}
-
 		setcookie($name , $value , $time , $path);
 
 	}
