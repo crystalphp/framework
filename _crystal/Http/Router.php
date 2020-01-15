@@ -148,23 +148,29 @@ class Router
       return;
     }
       if(!isset($this->{strtolower($this->request->requestMethod)})){
+        if($this->is_route_in_other_methods($this->request->path() , $this->request->requestMethod)){
+          throw new \Crystal\Exceptions\InvalidRouteMethod([$this->request->path() , $this->request->requestMethod]);
+        }
           return;
       }
-
     $methodDictionary = $this->{strtolower($this->request->requestMethod)};
     $formatedRoute = $this->formatRoute($this->request->requestUri);
 	if(! isset($methodDictionary[$formatedRoute])){
+    
+    if($this->is_route_in_other_methods($this->request->path() , $this->request->requestMethod)){
+      throw new \Crystal\Exceptions\InvalidRouteMethod([$this->request->path() , $this->request->requestMethod]);
+    }
+
 		AppEventListener::on_error_404();
 		$this->defaultRequestHandler();
 		return;
-	}
+  }
     $method = $methodDictionary[$formatedRoute][0];
     if(is_null($method))
     {
       $this->defaultRequestHandler();
       return;
     }
-
 
         Middleware::call_requireds();
         Middleware::call_list($methodDictionary[$formatedRoute][1]);
@@ -182,5 +188,20 @@ class Router
   function __destruct()
   {
     $this->resolve();
+  }
+
+
+
+
+  private function is_route_in_other_methods($route , $default_method){
+    foreach($this->supportedHttpMethods as $m){
+      if(strtolower($m) != strtolower($default_method)){
+        if(isset($this->{strtolower($m)}[$this->formatRoute($route)])){
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 }
