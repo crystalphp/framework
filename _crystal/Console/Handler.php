@@ -38,7 +38,9 @@ class Handler{
 
 
     private static function cmd_index(){
-        return 'MIT License
+        return 'For Show help of commands type "php crystal help"
+
+MIT License
     
 Copyright (c) 2020 parsa mpsh <parsa84sh1384@gmail.com> as <crystalphp.com>
     
