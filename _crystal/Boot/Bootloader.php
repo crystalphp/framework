@@ -66,7 +66,9 @@ class Bootloader{
 
 		include_once app_path('/app/events.php');
 		include_once app_path('/app/ExceptionHandler.php');
-		include_once libs('/Http/include.php');
+		
+		define('FULL_REQUEST_URI' , $_SERVER['REQUEST_URI']);
+		$_SERVER['REQUEST_URI'] = explode('?' , $_SERVER['REQUEST_URI'])[0];
 
 		$aliases = require libs('/Boot/set_aliases.php');
 		foreach($aliases as $key => $value){
