@@ -2,7 +2,7 @@
 
 namespace Crystal\Http;
 
-class Request implements IRequest
+class Request
 {
     public function file($key){
         if(isset($_FILES[$key])){
