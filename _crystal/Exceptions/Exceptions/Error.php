@@ -9,7 +9,7 @@ class Error extends BaseException{
         $this->errno = $data[0];
         $this->message = $data[1];
         $this->file = $data[2];
-        $this->line = $data[3];
+        $this->line = $data[3] - 1;
 
 		$code_line = $this->line;
 
