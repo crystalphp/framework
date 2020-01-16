@@ -35,8 +35,9 @@ class QueryBuilder{
 
 
 
-	public function where($key , $operator=null , $value){
-		if($operator == null){
+	public function where($key , $operator , $value=null){
+		if(count(func_get_args()) <= 2){
+			$value = $operator;
 			$operator = '=';
 		}
 		if($this->wheres != []){
