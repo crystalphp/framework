@@ -23,13 +23,14 @@ class DB{
 
 
 	public static function query($sql){
-		if(static::$on_listen != null){
-			$f = static::$on_listen;
-			$f($sql);
-		}
 		$result = mysqli_query(static::$connection , $sql);
 		if($result === false){
 			throw new \Crystal\Exceptions\DatabaseError([static::$connection->error]);
+		}
+
+		if(static::$on_listen != null){
+			$f = static::$on_listen;
+			$f($sql);
 		}
 
 		return $result;

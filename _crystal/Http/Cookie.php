@@ -17,18 +17,14 @@ class Cookie{
 	public function get($name , $default=null){
 		if(isset($_COOKIE[$name])){
 			$value = $_COOKIE[$name];
-			if(isset(app::get_config()['decryptor_class'])){
-				if(app::get_config()['decryptor_class'] != null){
-					$tmp_obj = app::get_config()['decryptor_class'];
-					$tmp_obj = new $tmp_obj();
-					$func = app::get_config()['decryptor_class_func'];
-					$value = $tmp_obj->$func($value);
-				}
-			}
 
 			return $value; 
 		}else{
 			return $default;
 		}
+	}
+
+	public function remove($name){
+		setcookie($name , null , time() - 100);
 	}
 }
