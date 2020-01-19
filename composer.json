@@ -2,6 +2,7 @@
     "name": "parsampsh/crystal",
     "description": "crystal is a php mvc framework",
     "type": "framework",
+    "license": "MIT",
     "authors": [
         {
             "name": "parsa mpsh",
