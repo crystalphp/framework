@@ -45,7 +45,7 @@ class Bootloader{
 	if( ! is_dir(app_path('/storage'))){
 		mkdir(app_path('/storage'));
 	}
-	
+        include_once app_path('/app/ExceptionHandler.php');	
 	include_once libs('/Exceptions/include.php');
 	
 	$db_conf = app::get_config('database');
@@ -65,7 +65,7 @@ class Bootloader{
 		static::jobs_boot();
 
 		include_once app_path('/app/events.php');
-		include_once app_path('/app/ExceptionHandler.php');
+
 		
 		define('FULL_REQUEST_URI' , $_SERVER['REQUEST_URI']);
 		$_SERVER['REQUEST_URI'] = explode('?' , $_SERVER['REQUEST_URI'])[0];
