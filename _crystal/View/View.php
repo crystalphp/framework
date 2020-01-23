@@ -30,11 +30,12 @@ class View{
 
     public static function make($name, $data = [], $include=false)
 	{
+		$tmp_name = $name;
 		$name = Hash::sha256($name . '.cv.php') . '.php';
 		$path = app_path('/storage/viewcache/' . $name);
 
 		if( ! is_file($path)){
-			throw new \Crystal\Exceptions\ViewNotFound([$name]);
+			throw new \Crystal\Exceptions\ViewNotFound([$tmp_name]);
 		}
 
 		if($include){

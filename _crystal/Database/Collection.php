@@ -2,7 +2,7 @@
 
 namespace Crystal\Database;
 
-class Collection implements \ArrayAccess{
+class Collection implements \ArrayAccess , \Countable{
 	function __construct($result , $model){
 		$collection = [];
 		while($row = mysqli_fetch_array($result)){

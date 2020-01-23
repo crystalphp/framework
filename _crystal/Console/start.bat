@@ -1,2 +1,2 @@
-cd $1
-php -S localhost:$2 index.php
+cd %~dp0\..\..\public
+php -S localhost:%0 index.php
