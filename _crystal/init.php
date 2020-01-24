@@ -1,5 +1,11 @@
 <?php
 
+
+if(is_file($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])){
+        return FALSE;
+}
+
+
 if( ! function_exists('app_path')){
 	function app_path($path=''){
 	    return APP_PATH . $path;
@@ -16,3 +22,6 @@ define('CRYSTAL_START_TIME' , microtime());
 
 include_once app_path('/vendor/autoload.php');
 \Crystal\Boot\Bootloader::boot();
+
+$app = new \Crystal\Http\Kernel;
+return $app->handle();

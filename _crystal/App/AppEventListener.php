@@ -12,13 +12,17 @@ class AppEventListener{
     private static $on_error_404 = [];
     private static $on_end_request = [];
 
+    private static $lock = false;
+
     private static function on($name , Closure $func=null){
         if($func === null){
             foreach(static::$$name as $tmp){
                 echo $tmp(new Request);
             }
         }else{
-            array_push(static::$$name , $func);
+            if( ! static::$lock){
+                array_push(static::$$name , $func);
+            }
         }
     }
 
@@ -36,6 +40,12 @@ class AppEventListener{
         }
 
         static::on($name , $func);
+    }
+
+
+
+    public static function lock(){
+        static::$lock = true;
     }
 
 }

@@ -3,7 +3,6 @@
 ini_set('display_errors' , '0');
 
 function crystal_error_handler($errno , $errstr , $file , $line){
-	ob_clean();
 	$tmp = new \App\ExceptionHandler;
 	echo $tmp->handle(new \Crystal\Exceptions\Error([$errno , $errstr , $file , $line]));
 	die();

@@ -42,7 +42,7 @@ class app{
 		$func_name = $action[1];
 		$req = new Request;
 		$res = call_user_func_array([$controller_obj , $func_name], [$req , $params]);
-		echo \Crystal\Controllers\Controller::make_output($res);
+		return \Crystal\Controllers\Controller::make_output($res);
 	}
 
 	public static function get_config($key=null)
@@ -65,7 +65,7 @@ class app{
 	}
 }
 
-define('APP_URL' , str_replace('{servername}' , $_SERVER['HTTP_HOST'] , app::get_config('app_url')));
+
 
 
 
