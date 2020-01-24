@@ -14,7 +14,9 @@ class Router{
         "POST",
     ];
 
-    private $do_finish = true;
+    public static $do_finish = true;
+
+    private $invalid_route_method = null;
 
     public function base($path = null){
         if($path === null){
@@ -147,6 +149,10 @@ class Router{
 
 
         if($req_uri == $route){
+            if(strtoupper($name) != strtoupper($_SERVER['REQUEST_METHOD'])){
+                $this->invalid_route_method = [$route];
+                return;
+            }
             $response = '';
             if(is_string($method)){
                 $response = app::controller($method , $middlewares , $params);
@@ -164,18 +170,29 @@ class Router{
     private function send_response($response){
         echo $response;
         AppEventListener::on_end_request();
-        $this->do_finish = false;
+        static::$do_finish = false;
+        $this->invalid_route_method = null;
         die('');
     }
 
 
 
     function __destruct(){
-        if( ! $this->do_finish){
+        if($this->invalid_route_method !== null){
+            throw new \Crystal\Exceptions\InvalidRouteMethod([$this->request->path() , $this->request->requestMethod]);
+        }
+
+
+        if( ! static::$do_finish){
             return;
         }
 
+
+
         $response = AppEventListener::on_error_404();
-        return $this->send_response($response);
+        echo $response;
+        static::$do_finish = false;
+        $this->invalid_route_method = null;
+        return;
     }
 }

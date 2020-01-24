@@ -15,6 +15,7 @@ class BaseException extends \Exception{
 
 
 	protected function handle($message , $file=null , $code_line=null){
+		\Crystal\Http\Router::$do_finish = false;
 		$ex_name = static::class;
 		$ex_name = explode('\\', $ex_name);
 		$ex_name = $ex_name[count($ex_name) - 1];
