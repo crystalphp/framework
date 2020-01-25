@@ -32,7 +32,7 @@ class Router{
     }
 
     private function is_paramable($route){
-        return strpos($route , '{');
+        return strpos($route , '{') && strpos($route , '}');
     }
 
     private function route_is_sync($route , $uri){
@@ -127,6 +127,8 @@ class Router{
                 }
             }
         }
+
+        Middleware::call_list($middlewares);
 
         if($this->is_paramable($this->formatRoute($args[0]))){
             $result_ris = $this->route_is_sync($this->formatRoute($route) , $this->formatRoute($_SERVER['REQUEST_URI']));

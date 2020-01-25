@@ -34,6 +34,7 @@ class Middleware{
 
             $result = $tmp_obj->handle(new Request);
             if($result !== false){
+                \Crystal\Http\Router::$do_finish = false;
                 die($result);
             }
         }
