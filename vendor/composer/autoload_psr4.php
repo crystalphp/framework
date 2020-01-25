@@ -9,6 +9,6 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Contracts\\Translation\\' => array($vendorDir . '/symfony/translation-contracts'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
-    'Crystal\\' => array($baseDir . '/_crystal'),
+    'Crystal\\' => array($vendorDir . '/crystalphp/crystal/src/Crystal'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

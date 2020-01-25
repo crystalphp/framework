@@ -1,4 +1,4 @@
 #!/usr/bin/php
 <?php
 define('APP_PATH', __DIR__);
-return include_once '_crystal/Console/handle.php';
+return include_once 'vendor/crystalphp/crystal/src/Crystal/Console/handle.php';

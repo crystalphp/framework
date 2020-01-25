@@ -4,7 +4,7 @@ function app_path($path=null){
 	return APP_PATH . $path;
 }
 function libs($path){
-	return APP_PATH . '/_crystal' . $path;
+	return APP_PATH . '/vendor/crystalphp/crystal/src/Crystal' . $path;
 }
 
 $_SERVER['REQUEST_METHOD'] = 'console';

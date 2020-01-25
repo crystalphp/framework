@@ -19,7 +19,7 @@ class start{
 		if(false){ // check is windows os
 		
 		}else{
-			$command = '$SHELL ' . APP_PATH . '/_crystal/Console/start.sh ' . $public . ' ' . $port;
+			$command = '$SHELL ' . libs('') . '/Console/start.sh ' . $public . ' ' . $port;
 			system($command);
 		}
 		

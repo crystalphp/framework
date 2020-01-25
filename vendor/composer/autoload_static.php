@@ -38,7 +38,7 @@ class ComposerStaticInit708b2899fae1fad2b22fc1f610037b84
         ),
         'Crystal\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/_crystal',
+            0 => __DIR__ . '/..' . '/crystalphp/crystal/src/Crystal',
         ),
     );
 
