@@ -142,10 +142,10 @@ class Response{
             $uri = '/';
         }
 
+        $forbiden_uris = \Crystal\App\app::get_config('forbiden_uris');
 
 
-
-        $tmb_bool = in_array($uri , static::$forbiden_uris);
+        $tmb_bool = in_array($uri , static::$forbiden_uris) || in_array($uri , $forbiden_uris);
         if($tmb_bool){
             die(static::httpcode(403));
             return false;

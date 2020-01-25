@@ -35,4 +35,9 @@ return [
 
     'hide_php_version_header' => false,
 
+
+    'forbiden_uris' => [
+        // in this item, you can set some uris to be forbiden
+    ]
+
 ];
