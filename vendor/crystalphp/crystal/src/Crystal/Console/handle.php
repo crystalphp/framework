@@ -14,4 +14,5 @@ include app_path('/vendor/autoload.php');
 \Crystal\Boot\Bootloader::boot();
 
 $app = new \Crystal\Console\Kernel;
-echo $app->handle($argv);
+echo $app->handle($argv) . '
+';

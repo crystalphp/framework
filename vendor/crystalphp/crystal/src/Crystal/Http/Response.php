@@ -70,6 +70,12 @@ class Response{
         511 => 'Network Authentication Required',
 	];
 
+    private static $forbiden_uris = [
+        '/.htaccess',
+    ];
+
+
+
 	public static function make($content , $code=200){
 		http_response_code($code);
 		return $content;
@@ -123,4 +129,33 @@ class Response{
 		readfile($path);
 		return;
 	}
+
+
+
+
+
+    public static function handle_file_request(){
+        $path = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
+
+        $uri = $_SERVER['REQUEST_URI'];
+        if($uri == ''){
+            $uri = '/';
+        }
+
+
+
+
+        $tmb_bool = in_array($uri , static::$forbiden_uris);
+        if($tmb_bool){
+            die(static::httpcode(403));
+            return false;
+        }
+
+        if(is_file($path)){
+            return true;
+        }
+
+        return false;
+    }
+
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a678818f9ae1dc8e7f121b390f684a6e",
+    "content-hash": "a4dc5a71aeb1438b6832373f79f547d1",
     "packages": [
         {
             "name": "kylekatarnls/update-helper",
