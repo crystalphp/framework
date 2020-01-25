@@ -6,10 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Modles\\' => array($baseDir . '/modles'),
-    'Migrations\\' => array($baseDir . '/migrations'),
-    'Middlewares\\' => array($baseDir . '/middlewares'),
-    'Forms\\' => array($baseDir . '/forms'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Contracts\\Translation\\' => array($vendorDir . '/symfony/translation-contracts'),
+    'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Crystal\\' => array($baseDir . '/_crystal'),
-    'Controllers\\' => array($baseDir . '/controllers'),
+    '' => array($vendorDir . '/nesbot/carbon/src'),
 );

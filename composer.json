@@ -9,10 +9,13 @@
             "email": "parsa84sh1384@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+	   "nesbot/carbon": "^1.0"
+    },
     "autoload" : {
         "psr-4" : {
             "Crystal\\" : "_crystal/"
         }
-    }
+    },
+    "homepage": "http://crystalphp.com"
 }
