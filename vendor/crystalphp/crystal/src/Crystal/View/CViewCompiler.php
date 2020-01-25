@@ -7,8 +7,8 @@ use Crystal\Utilities\Hash;
 
 class CViewCompiler{
 	public static function compile_views(){
-    	$files = \Crystal\Utilities\File::get_directory_tree(app_path('/views'));
-    	$first_length = strlen(app_path('/views/'));
+    	$files = \Crystal\Utilities\File::get_directory_tree(app_path('/resources/views'));
+    	$first_length = strlen(app_path('/resources/views/'));
 		
 		if( ! is_dir(app_path('/storage/viewcache/'))){
 			mkdir(app_path('/storage/viewcache/'));
@@ -30,7 +30,7 @@ class CViewCompiler{
 
 
 	private static function compile_once_view($name){
-		$content = fread(fopen(app_path('/views/' . $name) , 'r') , filesize(app_path('/views/' . $name)) + 1);
+		$content = fread(fopen(app_path('/resources/views/' . $name) , 'r') , filesize(app_path('/resources/views/' . $name)) + 1);
 		$tmp_name = str_replace('/', '.', $name);
 		$tmp_name = Hash::sha256($tmp_name) . '.php';
     	$content = static::format_content($content);
