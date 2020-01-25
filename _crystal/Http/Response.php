@@ -93,7 +93,13 @@ class Response{
 		</style>
 		<center style='height: 100%; width: 100%; background-color: rgb(200,200,210); box-sizing: border-box;'><div style='padding-top: 20%;'>{$msg}</div></center>
 		";
-		return $res;
+		
+                if( ! \Crystal\View\View::system_view($code , ['message' => $msg])){
+                    return $res;
+                }
+
+                return '';
+
 	}
 
 

@@ -155,7 +155,7 @@ class Router{
             }
             $response = '';
             if(is_string($method)){
-                $response = app::controller($method , $middlewares , $params);
+                $response = app::controller($method , $middlewares , []);
             }else {
                 $response = call_user_func_array($method, array($this->request , []));
             }

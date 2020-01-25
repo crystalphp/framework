@@ -80,4 +80,17 @@ class View{
 			return '';
 		}
 	}
+
+
+
+
+	public static function system_view($name , $data=[]){
+		$name = str_replace('.', '/', $name);
+		if(file_exists(app_path('/views/system/' . $name . '.cv.php'))){
+			echo static::make('system.' . $name , $data);
+			return true;
+		}
+
+		return false;
+	}
 }

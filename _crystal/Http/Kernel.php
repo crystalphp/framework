@@ -20,16 +20,25 @@ class Kernel{
 
 		$app_status = app::get_config('app_status');
 		if($app_status == 'down' || $app_status != 'up'){
-			die('
-			<center><h3>We Are Down</h3></center>
-			');
+			if( ! \Crystal\View\View::system_view('down' , ['default_message' => 'We are down'])){
+				die("
+		<style>
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		</style>
+		<center style='height: 100%; width: 100%; background-color: rgb(200,200,210); box-sizing: border-box;'><div style='padding-top: 20%;'>We are down</div></center>
+		");
+			}
+
+			die();
 		}
 
 
 		
 
 
-		session_start();
 		if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
 			$content = 'start_time='.CRYSTAL_START_TIME.';';
 			$_SESSION[app::get_config('app_name') . '_session'] = $content;

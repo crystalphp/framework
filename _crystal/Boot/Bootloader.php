@@ -39,6 +39,8 @@ class Bootloader{
 
 
 	public static function boot(){
+
+	session_start();
 	
 	if( ! is_dir(app_path('/storage'))){
 		mkdir(app_path('/storage'));
@@ -87,7 +89,7 @@ class Bootloader{
 	}
 
 	include_once app_path('/app/events.php');
-	//AppEventListener::lock();
+	AppEventListener::lock();
 
 
 	static::jobs_boot();
