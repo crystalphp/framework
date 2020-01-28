@@ -1,5 +1,9 @@
 <?php
 function make_exception_render($ex_name , $message , $file , $code_line=null){
+	if(app::get_config('app_debug') != 'true'){
+		echo httpcode(500);
+		return;
+	}
 	if($_SERVER['REQUEST_METHOD'] == 'console'){
 		return $ex_name . ':
 ' . $message . '
