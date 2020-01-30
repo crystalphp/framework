@@ -11,6 +11,8 @@ use Crystal\Boot\Bootloader;
 
 class Kernel{
 	public function handle(){
+
+		Bootloader::boot();
 		
 		define('APP_URL' , str_replace('{servername}' , $_SERVER['HTTP_HOST'] , app::get_config('app_url')));
 
@@ -60,7 +62,9 @@ class Kernel{
 
 		$router = new Router;
 
-
+		$router->any('/ajax-handler/{name}' , function($r , $p){
+			return /*"<script> " . */\Crystal\Ajax\Ajax::run($p['name']);// . " </script>";
+		});
 
 		include_once app_path('/app/routes.php');
 

@@ -34,6 +34,10 @@
 			<li><a href="http://tutorials.crystalphp.com">Tutorials</a></li>
 		</ul>
 	</center>
+	<input type="text" id="name" />
+	<button onclick="{{ ajax('btn_click' , ['name' => '#name']) }}">click</button>
+
+	<script src="/js/scripts.js"></script>
 
 </body>
 </html>

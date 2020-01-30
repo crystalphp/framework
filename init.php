@@ -24,8 +24,5 @@ if(\Crystal\Http\Response::handle_file_request()){
 	return FALSE;
 }
 
-
-\Crystal\Boot\Bootloader::boot();
-
 $app = new \Crystal\Http\Kernel;
 return $app->handle();

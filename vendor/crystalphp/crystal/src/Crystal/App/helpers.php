@@ -5,6 +5,18 @@ use Crystal\Http\Response;
 use Crystal\Http\Request;
 use Crystal\Utilities\Session;
 use Crystal\View\View;
+use Crystal\Ajax\Ajax;
+
+
+function ajax($name , $data_need){
+    $data_js = '{';
+    foreach($data_need as $key => $value){
+        $data_js .= $key . ': ' . "$('{$value}').val() , ";
+    }
+    $data_js .= 'dsdsdsf:0';
+    $data_js .= '}';
+    return "ajax('{$name}' , {$data_js})";
+}
 
 function form_render($str , $attributes=''){
     $str = explode('@', $str);

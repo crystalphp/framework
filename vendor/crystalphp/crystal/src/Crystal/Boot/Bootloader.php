@@ -7,6 +7,29 @@ use Crystal\App\AppEventListener;
 use Crystal\View\CViewCompiler;
 
 class Bootloader{
+
+	private static function boot_providers(){
+		$providers = glob(app_path('/app/providers/*.php'));
+
+		static::include_files($providers);
+
+		foreach($providers as $provider){
+			$class_name = explode('/' , $provider);
+			$class_name = $class_name[count($class_name) - 1];
+
+			$class_name = explode('.' , $class_name);
+			$class_name = $class_name[0];
+
+			$class_name = '\App\Providers\\' . $class_name;
+
+
+			$obj = new $class_name;
+			$obj->boot();
+
+		}
+
+	}
+
 	private static function do_cmd($cmd){
 		include_once libs('/Console/Cmd/'.$cmd.'.php');
 		$class_name = '\Crystal\Console\Cmd\\' . str_replace('-' , '_' , $cmd);
@@ -88,7 +111,7 @@ class Bootloader{
 		}
 	}
 
-	include_once app_path('/app/events.php');
+	static::boot_providers();
 	AppEventListener::lock();
 
 
