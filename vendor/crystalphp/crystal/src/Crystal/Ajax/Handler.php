@@ -4,7 +4,21 @@ namespace Crystal\Ajax;
 
 class Handler{
     public $request;
-    public $data;
+    private $data;
+
+
+    public function data($i = null){
+        $data = $this->data;
+
+        if($i === null){
+            return $data;
+        }
+
+        if(isset($data[$i])){
+            return $data[$i];
+        }
+        return null;
+    }
 
     function __construct(){
         $this->request = new \Crystal\Http\Request;

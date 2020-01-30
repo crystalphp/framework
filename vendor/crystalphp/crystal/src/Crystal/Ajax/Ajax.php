@@ -12,6 +12,7 @@ class Ajax{
 
     public static function run($name){
         $func = static::$events[$name];
-        return $func(new Handler);
+        $h = new Handler;
+        return \call_user_func_array($func , [$h , $h->data()]);
     }
 }

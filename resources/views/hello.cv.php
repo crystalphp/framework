@@ -34,8 +34,13 @@
 			<li><a href="http://tutorials.crystalphp.com">Tutorials</a></li>
 		</ul>
 	</center>
-	<input type="text" id="name" />
-	<button onclick="{{ ajax('btn_click' , ['name' => '#name']) }}">click</button>
+	
+
+		<input type="text" id="username" />
+		<input type="password" id="password" />
+
+		<button onclick="ajax('login' , ['#username' , '#password'])">login</button>
+
 
 	<script src="/js/scripts.js"></script>
 
