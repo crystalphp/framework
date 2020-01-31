@@ -8,6 +8,22 @@ use Crystal\View\CViewCompiler;
 
 class Bootloader{
 
+	private static $aliases = [
+	    '\Crystal\App\app' => '\app',
+	    '\Crystal\App\AppEventListener' => '\AppEventListener',
+    	'\Crystal\Database\DB' => '\DB',
+    	'\Crystal\Database\Model' => '\Model',
+    	'\Crystal\Http\Cookie' => '\Cookie',
+    	'\Crystal\Http\Request' => '\Request',
+    	'\Crystal\Utilities\Auth' => '\Auth',
+    	'\Crystal\Utilities\File' => '\File',
+    	'\Crystal\Utilities\Hash' => '\Hash',
+    	'\Crystal\Utilities\Kev' => '\Kev',
+    	'\Crystal\Utilities\Session' => '\Session',
+    	'\Crystal\Utilities\Str' => '\Str',
+    	'\Crystal\View\View' => '\View',
+	];
+
 	private static function boot_providers(){
 		$providers = glob(app_path('/app/providers/*.php'));
 
@@ -68,6 +84,10 @@ class Bootloader{
 	if( ! is_dir(app_path('/storage'))){
 		mkdir(app_path('/storage'));
 	}
+	if( ! is_dir(app_path('/storage/cache'))){
+		mkdir(app_path('/storage/cache'));
+	}
+
     include_once app_path('/app/ExceptionHandler.php');	
 	include_once libs('/Exceptions/include.php');
 	include_once libs('/App/helpers.php');
@@ -104,7 +124,7 @@ class Bootloader{
 		header('X-Powered-By: ');
 	}
 
-	$aliases = require libs('/Boot/set_aliases.php');
+	$aliases = static::$aliases;
 	foreach($aliases as $key => $value){
 		if( ! class_exists($value)){
 			class_alias($key , $value);

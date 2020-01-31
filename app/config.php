@@ -28,6 +28,7 @@ return [
     ],
 
     'cookies_default_life_time' => 2592000,
+    'cache_default_life_time' => 604800,
 
 
     'clean_views_output' => false,

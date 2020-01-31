@@ -4,6 +4,7 @@ use Crystal\App\app;
 use Crystal\Http\Response;
 use Crystal\Http\Request;
 use Crystal\Utilities\Session;
+use Crystal\Utilities\Cache;
 use Crystal\View\View;
 use Crystal\Ajax\Ajax;
 
@@ -89,6 +90,10 @@ function auth(){
 
 function db(){
     return new \Crystal\Database\DB;
+}
+
+function cache(){
+    return new Cache;
 }
 
 function chash(){
