@@ -39,7 +39,7 @@ class Kernel{
 
 
 		
-
+		\Crystal\Middlewares\Middleware::call_requireds();
 
 		if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
 			$content = 'start_time='.CRYSTAL_START_TIME.';';
@@ -53,17 +53,10 @@ class Kernel{
 
 		AppEventListener::on_begin_request();
 
-		if(request()->requestMethod() == 'POST'){
-			if( ! Csrf::validate(request()->post('csrf_token'))){
-				die(httpcode(419));
-			}
-		}
-
-
 		$router = new Router;
 
 		$router->any('/ajax-handler/{name}' , function($r , $p){
-			return /*"<script> " . */\Crystal\Ajax\Ajax::run($p['name']);// . " </script>";
+			return \Crystal\Ajax\Ajax::run($p['name']);
 		});
 
 		include_once app_path('/app/routes.php');

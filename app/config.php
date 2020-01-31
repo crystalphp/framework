@@ -4,7 +4,7 @@ return [
 
     'middlewares' => [
         'required' => [
-            
+            'ValidateCsrfToken',
         ],
     ],
 

@@ -34,15 +34,6 @@
 			<li><a href="http://tutorials.crystalphp.com">Tutorials</a></li>
 		</ul>
 	</center>
-	
-
-		<input type="text" id="username" />
-		<input type="password" id="password" />
-
-		<button onclick="ajax('login' , ['#username' , '#password'])">login</button>
-
-
-	<script src="/js/scripts.js"></script>
 
 </body>
 </html>
