@@ -27,15 +27,8 @@ class Handler{
 
 
 
-    public function alert($msg){
-        return "alert('{$msg}')";
-    }
-
-    public function redirect($to){
-        return "location.href='{$to}'";
-    }
-
-    public function jscode($code){
-        return $code;
+    public function __call($name , $args){
+        $res = new Response;
+        return call_user_func_array([$res , $name], $args);
     }
 }
