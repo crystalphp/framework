@@ -90,7 +90,6 @@ class Bootloader{
 
     include_once app_path('/app/ExceptionHandler.php');	
 	include_once libs('/Exceptions/include.php');
-	include_once libs('/App/helpers.php');
 
 	$db_conf = app::get_config('database');
 	if($db_conf['use_db']){

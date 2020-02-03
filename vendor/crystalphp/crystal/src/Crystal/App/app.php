@@ -65,13 +65,4 @@ class app{
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
+include_once libs('/App/helpers.php');
