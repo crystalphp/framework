@@ -65,4 +65,4 @@ class app{
 	}
 }
 
-include_once libs('/App/helpers.php');
+include_once APP_PATH . '/vendor/crystalphp/framework/src/Crystal/App/helpers.php';

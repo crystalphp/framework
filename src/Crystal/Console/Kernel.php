@@ -4,6 +4,11 @@ namespace Crystal\Console;
 
 class Kernel{
 	public function handle($argv){
+        $_SERVER['REQUEST_METHOD'] = 'console';
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
+        \Crystal\Boot\Bootloader::boot();
+
 		$commands = glob(libs('/Console/Cmd/*.php'));
 		foreach($commands as $command){
 			include_once $command;

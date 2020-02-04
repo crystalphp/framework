@@ -9,7 +9,16 @@ use Crystal\View\View;
 use Crystal\Ajax\Ajax;
 
 
-function ajax($name , $data_need){
+if( ! function_exists('app_path')){
+function app_path($path=null){
+    return APP_PATH . $path;
+}
+}
+
+if( ! function_exists('libs')){
+function libs($path){
+    return app_path('/vendor/crystalphp/framework/src/Crystal' . $path);
+}
 }
 
 function form_render($str , $attributes=''){
