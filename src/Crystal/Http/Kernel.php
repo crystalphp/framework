@@ -38,6 +38,9 @@ class Kernel{
 		}
 
 
+		if( ! isset($_SESSION['csrf_token'])){
+			$_SESSION['csrf_token'] = \Crystal\Forms\Csrf::generate();
+		}
 		
 		\Crystal\Middlewares\Middleware::call_requireds();
 
@@ -47,9 +50,7 @@ class Kernel{
 			AppEventListener::on_start();
 		}
 
-		if( ! isset($_SESSION['csrf_token'])){
-			$_SESSION['csrf_token'] = \Crystal\Forms\Csrf::generate();
-		}
+		
 
 		AppEventListener::on_begin_request();
 
@@ -60,6 +61,8 @@ class Kernel{
 		});
 
 		include_once app_path('/app/routes.php');
+
+		$router->finish();
 
 		return;
 	}

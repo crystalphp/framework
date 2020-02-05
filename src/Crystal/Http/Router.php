@@ -179,7 +179,7 @@ class Router{
 
 
 
-    function __destruct(){
+    function finish(){
         if($this->invalid_route_method !== null){
             throw new \Crystal\Exceptions\InvalidRouteMethod([$this->request->path() , $this->request->requestMethod]);
         }
