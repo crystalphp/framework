@@ -4,11 +4,10 @@ namespace Crystal\Database;
 
 class Collection implements \ArrayAccess , \Countable{
 	function __construct($result , $model){
-		$collection = [];
-		while($row = mysqli_fetch_array($result)){
-			array_push($collection , new $model($row));
-		}
-
+        $collection = [];
+		foreach($result as $row){
+            array_push($collection , new $model($row));
+        }
 		$this->data = $collection;
 	}
 

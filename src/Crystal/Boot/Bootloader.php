@@ -94,11 +94,12 @@ class Bootloader{
 	$db_conf = app::get_config('database');
 	if($db_conf['use_db']){
 		$db_conf = $db_conf['connections'][$db_conf['db']];
+		$db_driver = $db_conf['driver'];
 		$db_host = $db_conf['host'];
 		$db_user = $db_conf['username'];
 		$db_pass = $db_conf['password'];
 		$db_name = $db_conf['name'];
-		\Crystal\Database\DB::connect($db_host , $db_user , $db_pass , $db_name);
+		\Crystal\Database\DB::connect($db_host , $db_user , $db_pass , $db_name , $db_driver);
 	}
 
 

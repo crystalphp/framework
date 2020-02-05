@@ -34,7 +34,7 @@ class Model{
 	}
 
 
-	public function all($fields=['*']){		
+	public static function all($fields=['*']){		
 		return static::q()->get($fields);
 	}
 

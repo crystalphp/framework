@@ -3,27 +3,24 @@
 namespace Crystal\Database;
 
 use Crystal\App\AppEventListener;
+use Crystal\App\app;
 
 class DB{
 	private static $connection;
 	private static $on_listen = null;
 
-	public static function connect($host, $user, $password, $db_name){
-		$con = new \mysqli($host, $user, $password, $db_name);
-		if($con->connect_errno){
-			throw new \Crystal\Exceptions\DatabaseError([$con->connect_errno]);
-		}else{
-			static::$connection = $con;
-			AppEventListener::on_end_request(function(){
-				\Crystal\Database\DB::close_connection();
-			});
-			return true;
-		}
+	public static function connect($host, $user, $password, $db_name, $driver){
+		$con = new \PDO("mysql:host={$host};dbname={$db_name}" , $user , $password);
+		static::$connection = $con;
+		AppEventListener::on_end_request(function(){
+			\Crystal\Database\DB::close_connection();
+		});
+		return true;
 	}
 
 
 	public static function query($sql){
-		$result = mysqli_query(static::$connection , $sql);
+		$result = static::$connection->query($sql);
 		if($result === false){
 			throw new \Crystal\Exceptions\DatabaseError([static::$connection->error]);
 		}
@@ -37,7 +34,7 @@ class DB{
 	}
 
 	public static function close_connection(){
-		mysqli_close(static::$connection);
+		static::$connection = null;
 	}
 
 	public static function listen(\Closure $func){
