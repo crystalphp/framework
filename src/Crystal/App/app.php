@@ -8,6 +8,9 @@ use Crystal\Utilities\KEVRender;
 
 
 class app{
+
+	private static $loaded_config = null;
+
 	public static function controller($action , $middlewares=[] , $params=[])
 	{
 		$tmp = $action;
@@ -47,8 +50,12 @@ class app{
 
 	public static function get_config($key=null)
 	{
-		include_once libs('/App/helpers.php');
-		$configs = require app_path('/app/config.php');
+		if(static::$loaded_config === null){
+			$configs = require app_path('/app/config.php');
+			static::$loaded_config = $configs;
+		}else{
+			$configs = static::$loaded_config;
+		}
 		if($key !== null){
 			return $configs[$key];
 		}
