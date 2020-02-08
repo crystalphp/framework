@@ -3,7 +3,7 @@
 namespace Crystal\Utilities;
 
 use Crystal\Utilities\Session;
-use Crystal\Utilities\Cookie;
+use Crystal\Http\Cookie;
 use Crystal\Utilities\Hash;
 
 class Auth{
