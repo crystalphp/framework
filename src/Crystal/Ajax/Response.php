@@ -24,6 +24,14 @@ class Response{
         return $this->mkcode($code);
     }
 
+    public function js($code){
+        return $this->jscode($code);
+    }
+
+    public function code($code){
+        return $this->jscode($code);
+    }
+
     public function elcontentset($selector , $content=''){
         return $this->mkcode("$('{$selector}').html('{$content}')");
     }
