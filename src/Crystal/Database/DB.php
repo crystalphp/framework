@@ -9,8 +9,8 @@ class DB{
 	private static $connection;
 	private static $on_listen = null;
 
-	public static function connect($host, $user, $password, $db_name, $driver){
-		$con = new \PDO("mysql:host={$host};dbname={$db_name}" , $user , $password);
+	public static function connect($conf){
+		$con = Connector::connect($conf);
 		static::$connection = $con;
 		AppEventListener::on_end_request(function(){
 			\Crystal\Database\DB::close_connection();
