@@ -112,3 +112,7 @@ function chash(){
 function cfile(){
     return new \Crystal\Utilities\File;
 }
+
+function limiter(){
+    return new \Crystal\Utilities\Limiter;
+}

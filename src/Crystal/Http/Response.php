@@ -4,6 +4,7 @@ namespace Crystal\Http;
 
 class Response{
 
+    // this list is provided by symfony
 	private static $httpcodes_default_response = [
 		100 => 'Continue',
         101 => 'Switching Protocols',
