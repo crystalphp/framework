@@ -8,7 +8,7 @@ use Crystal\Http\Request;
 class Middleware{
     public static function call_requireds()
     {
-        $required_middlewares = app::get_config()['middlewares']['required'];
+        $required_middlewares = app::get_config('http')['middlewares']['required'];
         static::call_list($required_middlewares);
     }
 

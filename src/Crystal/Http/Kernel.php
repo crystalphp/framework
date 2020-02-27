@@ -14,13 +14,13 @@ class Kernel{
 
 		Bootloader::boot();
 		
-		define('APP_URL' , str_replace('{servername}' , $_SERVER['HTTP_HOST'] , app::get_config('app_url')));
+		define('APP_URL' , str_replace('{servername}' , $_SERVER['HTTP_HOST'] , app::get_config('app')['app_url']));
 
 		
 		define('FULL_REQUEST_URI' , $_SERVER['REQUEST_URI']);
 		$_SERVER['REQUEST_URI'] = explode('?' , $_SERVER['REQUEST_URI'])[0];
 
-		$app_status = app::get_config('app_status');
+		$app_status = app::get_config('app')['app_status'];
 		if($app_status == 'down' || $app_status != 'up'){
 			if( ! \Crystal\View\View::system_view('down' , ['default_message' => 'We are down'])){
 				die("
@@ -44,9 +44,9 @@ class Kernel{
 		
 		\Crystal\Middlewares\Middleware::call_requireds();
 
-		if( ! isset($_SESSION[app::get_config('app_name') . '_session'])){
+		if( ! isset($_SESSION[app::get_config('app')['app_name'] . '_session'])){
 			$content = 'start_time='.CRYSTAL_START_TIME.';';
-			$_SESSION[app::get_config('app_name') . '_session'] = $content;
+			$_SESSION[app::get_config('app')['app_name'] . '_session'] = $content;
 			AppEventListener::on_start();
 		}
 

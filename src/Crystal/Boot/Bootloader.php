@@ -109,13 +109,13 @@ class Bootloader{
 		static::include_files($files);
 	}
 
-	if(app::get_config('app_debug') == 'true'){
+	if(app::get_config('app')['app_debug'] == 'true'){
 		static::do_cmd('mix-resources');
 		CViewCompiler::compile_views();
 	}
 
 
-	if(app::get_config('hide_php_version_header') === true){
+	if(app::get_config('http')['hide_php_version_header'] === true){
 		header('X-Powered-By: ');
 	}
 

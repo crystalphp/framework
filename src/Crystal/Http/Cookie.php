@@ -7,7 +7,7 @@ use Crystal\App\app;
 class Cookie{
 	public function set($name , $value , $time=null , $path='/'){
 		if($time === null){
-			$time = app::get_config('cookies_default_life_time');
+			$time = app::get_config('http')['cookies_default_life_time'];
 		}
 
 		setcookie($name , $value , $time , $path);

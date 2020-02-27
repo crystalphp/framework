@@ -7,7 +7,7 @@ use Crystal\App\app;
 class Cache{
 	public static function put($name , $obj , $expire=null){
 		if($expire == null){
-			$expire = app::get_config('cache_default_life_time');
+			$expire = app::get_config('app')['cache_default_life_time'];
 		}
 
 		$expire = time() + $expire;

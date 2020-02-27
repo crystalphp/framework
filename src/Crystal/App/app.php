@@ -51,8 +51,18 @@ class app{
 	public static function get_config($key=null)
 	{
 		if(static::$loaded_config === null){
-			$configs = require app_path('/app/config.php');
-			static::$loaded_config = $configs;
+			$configs = glob(app_path('/app/config/*.php'));
+			$loaded_config = [];
+			foreach($configs as $config){
+				$tmp = require $config;
+				$tmp_key = explode('/' , $config);
+				$tmp_key = $tmp_key[count($tmp_key) - 1];
+				$tmp_key = explode('.' , $tmp_key);
+				$tmp_key = $tmp_key[0];
+				$loaded_config[$tmp_key] = $tmp;
+			}
+			static::$loaded_config = $loaded_config;
+			$configs = static::$loaded_config;
 		}else{
 			$configs = static::$loaded_config;
 		}

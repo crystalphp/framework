@@ -47,7 +47,7 @@ class View{
 		static::include_view($path , $data);
 		$content = ob_get_clean();
 
-		if(app::get_config('clean_views_output') === true){
+		if(app::get_config('app')['clean_views_output'] === true){
 			$content = str_replace('
 ', '', $content);
 			$content = str_replace('	', '', $content);
