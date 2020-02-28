@@ -7,7 +7,7 @@ use Crystal\Http\Response;
 class Limiter{
 
 	private static function get_time_by_char($ch){
-		if($ch = 'm'){
+		if($ch == 'm'){
 			return 60;
 		}else if($ch == 'h'){
 			return 60*60;
@@ -63,6 +63,6 @@ class Limiter{
 	}
 
 	public static function perDay($per , $closure=null){
-		return static::perHour($per , 'd' , $closure);
+		return static::per($per , 'd' , $closure);
 	}
 }
