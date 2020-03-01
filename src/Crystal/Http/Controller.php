@@ -1,8 +1,8 @@
 <?php
 
-namespace Crystal\Controllers;
+namespace Crystal\Http;
 
-use Crystal\Middlewares\Middleware;
+use Crystal\Http\Middleware;
 
 class Controller{
 

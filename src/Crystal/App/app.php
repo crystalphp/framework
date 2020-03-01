@@ -2,7 +2,7 @@
 
 namespace Crystal\App;
 
-use Crystal\Middlewares\Middleware;
+use Crystal\Http\Middleware;
 use Crystal\Http\Request;
 use Crystal\Utilities\KEVRender;
 
@@ -45,7 +45,7 @@ class app{
 		$func_name = $action[1];
 		$req = new Request;
 		$res = call_user_func_array([$controller_obj , $func_name], [$req , $params]);
-		return \Crystal\Controllers\Controller::make_output($res);
+		return \Crystal\Http\Controller::make_output($res);
 	}
 
 	public static function get_config($key=null)

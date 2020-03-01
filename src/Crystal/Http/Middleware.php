@@ -1,6 +1,6 @@
 <?php
 
-namespace Crystal\Middlewares;
+namespace Crystal\Http;
 
 use Crystal\App\app;
 use Crystal\Http\Request;

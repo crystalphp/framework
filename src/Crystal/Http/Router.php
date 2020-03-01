@@ -4,7 +4,7 @@ namespace Crystal\Http;
 
 use Crystal\App\app;
 use Crystal\App\AppEventListener;
-use Crystal\Middlewares\Middleware;
+use Crystal\Http\Middleware;
 
 class Router{
     private $base = '';

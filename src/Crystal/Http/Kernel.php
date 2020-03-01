@@ -42,7 +42,7 @@ class Kernel{
 			$_SESSION['csrf_token'] = \Crystal\Forms\Csrf::generate();
 		}
 		
-		\Crystal\Middlewares\Middleware::call_requireds();
+		\Crystal\Http\Middleware::call_requireds();
 
 		if( ! isset($_SESSION[app::get_config('app')['app_name'] . '_session'])){
 			$content = 'start_time='.CRYSTAL_START_TIME.';';

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Crystal\Controllers\Controller;
+use Crystal\Http\Controller;
 use Crystal\Http\Request;
 
 class ClassName extends Controller

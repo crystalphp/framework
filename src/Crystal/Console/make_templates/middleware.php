@@ -2,7 +2,7 @@
 
 namespace Middlewares;
 
-use Crystal\Middlewares\Middleware;
+use Crystal\Http\Middleware;
 use Crystal\Http\Request;
 
 class ClassName extends Middleware
