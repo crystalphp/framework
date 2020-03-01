@@ -16,7 +16,7 @@ class start{
 		
 		echo 'crystal server started on http://localhost:' . $port . '
 ';
-		if(false){ // check is windows os
+		if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){ // check is windows os
 			$public = str_replace('/' , '\\' , $public);
 			$command = str_replace('/' , '\\' , libs('/Console/start.bat')) . ' ' . $public;
 			system($command);
