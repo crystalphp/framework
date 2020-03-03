@@ -40,7 +40,7 @@ class Cache{
 		}
 	}
 
-	public function has($name){
+	public static function has($name){
 		$path = app_path('/storage/cache/' . Hash::sha256($name));
 		if( ! is_file($name)){
 			return false;
