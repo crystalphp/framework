@@ -23,4 +23,17 @@ class Connector{
         $file = str_replace('~' , app_path() , $conf['src']);
         return new \PDO("sqlite:" . $file);
     }
+
+    private static function sqlsrv($conf){
+        $server = $conf['server'];
+        $name = $conf['database'];
+        $username = $conf['username'];
+        $password = $conf['password'];
+        return new \PDO("sqlsrv:Server={$server};Database={$name}", $username, $password);
+    }
+
+    private static function other($conf){
+        $connection_string = $conf['pdo_connection_string'];
+        return new \PDO($connection_string);
+    }
 }
