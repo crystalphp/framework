@@ -79,7 +79,7 @@ class Bootloader{
 
 	public static function boot(){
 
-	session_start();
+	\Crystal\Utilities\Session::bootstrap();
 	
 	if( ! is_dir(app_path('/storage'))){
 		mkdir(app_path('/storage'));

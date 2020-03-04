@@ -3,6 +3,34 @@
 namespace Crystal\Utilities;
 
 class Session{
+	protected static $flash = [];
+
+	public static function bootstrap(){
+		session_start();
+		if(static::exist('flash')){
+			static::$flash = static::get('flash');
+		}
+
+		static::remove('flash');
+	}
+
+	public static function flash($key , $value=null){
+		if(!static::exist('flash')){
+			static::set('flash' , []);
+		}
+
+		if($value === null){
+			if(!isset(static::$flash[$key])){
+				return null;
+			}
+			return static::$flash[$key];
+		}
+
+		$flash = static::get('flash');
+		$flash[$key] = $value;
+		static::set('flash' , $flash);
+	}
+
 	public static function get($key , $default=null){
 		if(isset($_SESSION[$key])){
 			return $_SESSION[$key];
