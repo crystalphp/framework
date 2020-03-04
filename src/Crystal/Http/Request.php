@@ -78,7 +78,9 @@ class Request implements ArrayAccess
 
         foreach ($body as $key => $value)
         {
-            $this->{$key} = $value;
+            if(!isset($this->{$key})){
+                $this->{$key} = $value;
+            }
         }
 
     }
@@ -144,14 +146,27 @@ class Request implements ArrayAccess
 
     public function __toString()
     {
-        $content = '';
+        return $this->__toJson();
+        /*$content = '';
 
         foreach ($this as $key => $value)
         {
             $content .= "[$key => $value]";
         }
 
-        return $content;
+        return $content;*/
+    }
+
+    public function __toJson()
+    {
+        $array = [];
+
+        foreach ($this as $key => $value)
+        {
+            $array[$key] = $value;
+        }
+
+        return \json_encode($array);
     }
 
     public function offsetExists($offset){
