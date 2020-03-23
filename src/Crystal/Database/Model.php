@@ -95,10 +95,15 @@ class Model{
 	public static function find($id){
 		return static::q()->where('id' , '=' , $id)->get()->first();
 	}
+	public function get_columns(){
+		return $this->columns;
+	}
 
 	public function save(){
 		if($this->id == null){
-			return static::insert($this->columns , $this);
+			$tmp = static::insert($this->columns , $this);
+			$this->columns = static::last()->get_columns();
+			return $tmp;
 		}
 
 		$keys = $this->changed_columns;
