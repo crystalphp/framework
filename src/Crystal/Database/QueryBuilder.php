@@ -93,9 +93,6 @@ class QueryBuilder{
 
 	public function delete(){
 		$model = $this->model;
-		if(is_string($columns)){
-			$columns = [$columns];
-		}
 
 		$wheres_str = '';
 		if($this->wheres == []){
