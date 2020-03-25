@@ -12,6 +12,10 @@ cache clear : clear all of cache items';
         }
 
         if($args[0] == 'clear'){
+		$files = glob(app_path('/storage/cache/*'));
+		foreach($files as $file){
+			unlink($file);
+		}
         }
 
         if($args[0] == 'list'){
