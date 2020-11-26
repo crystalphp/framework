@@ -69,7 +69,6 @@ function make_exception_render($ex_name , $message , $file , $code_line=null){
 </style>
 
 <header>
-	<a href="http://crystalphp.com">crystalphp.com</a>
 	<h2><?= $ex_name ?></h2>
 	<div><?= $message ?></div>
 	<div>in <?= $file ?>:<?= $code_line + 1 ?></div>
