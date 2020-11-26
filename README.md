@@ -1,13 +1,18 @@
-# crystal framework
+# Crystalphp Framework
 
-this is crystal php framework
+The crystalphp is an MVC framework to write Web applications with php.
 
-more information: http://crystalphp.com
+## Authors
+crystalphp is writed by [parsampsh](https://github.com/parsampsh).
 
-read documentation: https://gitlab.com/crystalphp/docs or https://github.com/crystalphp/docs
+## License
+crystalphp is licensed under [MIT](/LICENSE).
 
-# create new project
+## Get started
 
-using composer:
+create an crystalphp project using composer:
 
 `$ composer create-project crystalphp/project projectname`
+
+## Documentation
+read [crystalphp documentation](https://github.com/crystalphp/docs) to learn crystalphp.
