@@ -2,6 +2,9 @@
 
 The crystalphp is an MVC framework to write Web applications with php.
 
+#### NOTE: **THIS PROJECT IS DEPRECATED**
+
+
 ## Authors
 crystalphp is writed by [parsampsh](https://github.com/parsampsh).
 
